@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar PIC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1A237E, #0D47A1); /* Latar belakang gradien primer */
+            margin: 0;
+            padding: 40px;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .interactive-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding: 15px 30px;
+            background-color: rgba(255, 215, 0, 0.1); /* Latar belakang emas transparan */
+            color: #FFD700;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .pic-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid responsif */
+            gap: 25px;
+            margin-bottom: 40px;
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        .pic-item {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+            color: #37474F;
+            border: 1px solid #E0E0E0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pic-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #FFD700; /* Garis emas di atas */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .pic-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.5); /* Efek glow emas yang lebih kuat */
+        }
+
+        .pic-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pic-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid #FFD700;
+            object-fit: cover;
+        }
+
+        .pic-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A237E;
+            margin-bottom: 8px;
+        }
+
+        .pic-status {
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .on-duty {
+            color: #2E7D32;
+        }
+
+        .libur {
+            color: #B71C1C;
+        }
+
+        .pic-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: #FFD700;
+            color: #1A237E;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .pic-button:hover {
+            background-color: #F0C808;
+            transform: scale(1.03);
+        }
+
+          /* Tombol Home */
+    .home-button {
+        margin-top: 30px; /* Berikan jarak dari daftar PIC */
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #1A237E; /* Teks warna primer */
+        background-color: #FFD700; /* Latar belakang emas */
+        border: 2px solid #FFD700; /* Border emas tipis */
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.6); /* Shadow emas yang lebih terang */
+        transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s; /* Tambahkan transisi untuk semua properti */
+    }
+
+    .home-button:hover {
+        background-color: #F0C808; /* Warna emas lebih gelap saat hover */
+        color: #121212; /* Teks menjadi gelap saat hover */
+        border-color: #F0C808; /* Border juga berubah warna saat hover */
+        box-shadow: 0px 6px 15px rgba(255, 215, 0, 0.8); /* Shadow emas lebih terang dan besar saat hover */
+        transform: scale(1.05); /* Efek hover sedikit lebih besar */
+    }
+    </style>
+</head>
+<body>
+    <div class="interactive-title">DAFTAR PIC</div>
+    <div class="pic-container" id="on-duty-list"></div>
+    <div class="pic-container" id="off-duty-list"></div>
+
+    <button class="home-button" onclick="window.location.href='index.html'">🏠 Home</button>
+
+    <script>
+        const picData = [
+            { name: "Pak Satiman (SPV)", status: "On Duty", phone: "628567301828" },
+            { name: "Ilyas", status: "On Duty", phone: "6289513768701" },
+            { name: "Irfan", status: "On Duty", phone: "6285215908460" },
+            { name: "Budi", status: "On Duty", phone: "62895340710827" },
+            { name: "Pak Miftah (SPV)", status: "Libur", phone: "6281285526402" },
+            { name: "Pak Denny (SPV)", status: "Libur", phone: "6281383256718" },
+            { name: "Yuni", status: "Libur", phone: "6282122153998" },
+            { name: "Faisal", status: "Libur", phone: "6287874805035" }
+        ];
+
+        function createPicCard(pic) {
+            return `
+                <div class="pic-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="${pic.name}" class="pic-image">
+                    <div class="pic-title">${pic.name}</div>
+                    <div class="${pic.status === 'On Duty' ? 'on-duty' : 'libur'}">Status: ${pic.status}</div>
+                    <a href="https://wa.me/${pic.phone}" target="_blank">
+                        <button class="pic-button"><i class="fab fa-whatsapp"></i> Chat Me</button>
+                    </a>
+                </div>
+            `;
+        }
+
+        document.getElementById("on-duty-list").innerHTML = picData
+            .filter(pic => pic.status === "On Duty")
+            .map(createPicCard)
+            .join('');
+
+        document.getElementById("off-duty-list").innerHTML = picData
+            .filter(pic => pic.status === "Libur")
+            .map(createPicCard)
+            .join('');
+    </script>
+</body>
+</html>

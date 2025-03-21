@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        /* Gaya Umum */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            text-align: center;
+        }
+
+        /* Container utama */
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            height: 90vh;
+            background: rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 6px 25px rgba(255, 215, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Judul */
+        h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FFD700;
+            text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Styling iframe */
+        iframe {
+            width: 98%;
+            height: 85%;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✨ Feedback Request ✨</h2>
+        <iframe src="https://lookerstudio.google.com/embed/reporting/65f1de2d-8145-4795-a7f3-33a2f59fb51d/page/page_12345" 
+            allowfullscreen 
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+        </iframe>
+    </div>
+</body>
+</html>
