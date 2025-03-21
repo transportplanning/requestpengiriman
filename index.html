@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #ecf0f1;
+            overflow: hidden;
+            font-size: 14px;
+        }
+
+        .login-container {
+            background-color: rgba(52, 73, 94, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .login-header h2 {
+            color: #ecf0f1;
+            margin-top: 0;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .login-header h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background-color: #3498db;
+            border-radius: 1px;
+        }
+
+        .login-header p {
+            color: #bdc3c7;
+            font-size: 1em;
+            margin-top: 0;
+            opacity: 0.8;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ecf0f1;
+            font-weight: 500;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 0.9em;
+            background-color: rgba(52, 73, 94, 0.6);
+            color: #ecf0f1;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: #bdc3c7;
+            opacity: 0.7;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            background-color: rgba(52, 73, 94, 0.8);
+            border-color: #3498db;
+        }
+
+        .form-group button {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+            font-weight: 500;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group button:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-message {
+            color: #ffdddd;
+            margin-top: 15px;
+            font-size: 0.85em;
+            text-align: center;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        /* Responsif untuk tampilan ponsel yang lebih kecil */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px;
+                border-radius: 8px;
+                max-width: 95%;
+            }
+
+            .login-header {
+                margin-bottom: 20px;
+            }
+
+            .login-header h2 {
+                font-size: 1.8em;
+                margin-bottom: 4px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                font-size: 0.85em;
+                margin-bottom: 6px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="password"] {
+                padding: 8px;
+                font-size: 0.85em;
+                border-radius: 6px;
+            }
+
+            .form-group button {
+                padding: 10px 12px;
+                font-size: 0.9em;
+                border-radius: 6px;
+            }
+
+            .error-message {
+                margin-top: 10px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h2>Akses Akun</h2>
+            <p>Silakan masukkan kredensial Anda untuk melanjutkan.</p>
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">User:</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username Anda" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Kata Sandi:</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">
+                    <i class="fas fa-sign-in-alt"></i> Masuk
+                </button>
+            </div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const errorMessageDiv = document.getElementById('errorMessage');
+            const loginButton = loginForm.querySelector('button');
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const usernameInput = document.getElementById('username').value;
+                const passwordInput = document.getElementById('password').value;
+
+                const correctUsername = 'admin';
+                const correctPassword = '123';
+
+                loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+                loginButton.disabled = true;
+
+                setTimeout(() => {
+                    if (usernameInput === correctUsername && passwordInput === correctPassword) {
+                        window.location.href = 'index.html';
+                    } else {
+                        errorMessageDiv.textContent = 'User atau Kata Sandi salah.';
+                        errorMessageDiv.style.display = 'block';
+                        loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+                        loginButton.disabled = false;
+                        errorMessageDiv.classList.add('shake');
+                        setTimeout(() => {
+                            errorMessageDiv.classList.remove('shake');
+                        }, 300);
+                    }
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
