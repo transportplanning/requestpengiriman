@@ -158,6 +158,38 @@
             color: #fff;
         }
 
+        .logout-container {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Tengahkan tombol */
+            margin-top: 20px; /* Beri jarak dari menu */
+            margin-bottom: 30px; /* Beri jarak dari konten berikutnya */
+        }
+
+        .logout-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e74c3c; /* Warna merah untuk tombol log out */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(192, 57, 43, 0.4);
+        }
+
+        .logout-button i {
+            font-size: 16px;
+        }
+
         .introduction {
             background-color: rgba(52, 73, 94, 0.9); /* Latar belakang introduction lebih gelap */
             border-radius: 10px;
@@ -166,6 +198,7 @@
             margin-bottom: 30px; /* Kurangi margin bawah introduction */
             width: 100%;
             text-align: center;
+            color: #fff;
             border-left: 5px solid #3498db; /* Aksen biru profesional lebih tebal */
             backdrop-filter: blur(10px);
         }
@@ -392,61 +425,18 @@
                 font-size: 15px;
             }
 
-            .introduction {
-                padding: 20px;
-                border-left: 5px solid #3498db;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            .logout-container {
+                margin-top: 15px;
+                margin-bottom: 25px;
             }
 
-            .introduction h2 {
-                font-size: 24px;
-            }
-
-            .introduction > p {
+            .logout-button {
                 font-size: 15px;
-            }
-
-            .introduction .slideshow-container {
-                max-width: 95%; /* Lebih lebar di tampilan mobile */
-            }
-
-            .introduction .slideshow-container .slide h3 {
-                font-size: 18px;
-                max-width: 95%;
-            }
-
-            .section-title {
-                font-size: 30px;
-            }
-
-            .leaders-container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .leader-card {
-                padding: 15px;
-                border-top: 2px solid #3498db; /* Aksen garis biru responsif */
-            }
-
-            ..leader-card img {
-                width: 80px;
-                height: 80px;
-                margin-bottom: 10px;
-            }
-
-            .leader-card h3 {
-                font-size: 16px;
-            }
-
-            .leader-card p {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-
-            .leader-card .chat-me {
-                font-size: 14px;
                 padding: 8px 15px;
+            }
+
+            .logout-button i {
+                font-size: 15px;
             }
         }
 
@@ -513,6 +503,10 @@
             </ul>
         </nav>
 
+        <div class="logout-container">
+            <a href="index.html" class="button logout-button"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+        </div>
+
         <div class="introduction">
             <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
             <p>Kami menyediakan platform terpusat untuk memudahkan Anda dalam mengajukan permintaan pengiriman dan mengakses informasi terkait. Jelajahi fitur-fitur yang tersedia untuk pengalaman yang lebih efisien.</p>
@@ -559,6 +553,7 @@
                 <span class="dot" onclick="currentSlide(2)"></span>
                 <span class="dot" onclick="currentSlide(3)"></span>
                 <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
                 <span class="dot" onclick="currentSlide(5)"></span>
                 <span class="dot" onclick="currentSlide(6)"></span>
                 <span class="dot" onclick="currentSlide(7)"></span>
