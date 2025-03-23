@@ -359,9 +359,6 @@
                 const usernameInput = document.getElementById('username').value;
                 const passwordInput = document.getElementById('password').value;
 
-                const correctUsername = 'admin';
-                const correctPassword = '123';
-
                 // Tampilkan animasi loading
                 loadingOverlay.classList.add('active');
                 loginButton.disabled = true;
@@ -373,8 +370,10 @@
                     loginButton.disabled = false;
                     loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
 
-                    if (usernameInput === correctUsername && passwordInput === correctPassword) {
-                        window.location.href = 'home.html'; // Arahkan ke home.html jika login berhasil
+                    if (usernameInput === 'hci' && passwordInput === '123') {
+                        window.location.href = 'home.html'; // Arahkan ke home.html jika login sebagai hci
+                    } else if (usernameInput === 'admin' && passwordInput === '123') {
+                        window.location.href = 'database.html'; // Arahkan ke database.html jika login sebagai admin
                     } else {
                         errorMessageDiv.textContent = 'Username atau Kata Sandi salah.';
                         errorMessageDiv.style.display = 'block';
