@@ -8,20 +8,22 @@
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            overflow: hidden;
+            overflow: auto; /* Ubah menjadi auto agar konten tidak terpotong pada layar kecil */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #f0f4f7; /* Warna latar belakang body */
+            background: #f0f4f7;
             color: #37474f;
+            padding: 20px; /* Tambahkan sedikit padding untuk layar kecil */
+            box-sizing: border-box;
         }
 
         .container {
             display: flex;
             width: 90%;
             max-width: 1200px;
-            height: 550px; /* Sesuaikan tinggi */
+            height: 550px; /* Tetapkan tinggi untuk desktop */
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -29,7 +31,7 @@
 
         .left-side {
             flex: 1;
-            background-image: url('sampul2.jfif'); /* Gambar latar belakang menu */
+            background-image: url('sampul2.jfif');
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -38,7 +40,7 @@
             align-items: center;
             padding: 40px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Overlay gelap agar teks terlihat */
+            background-color: rgba(0, 0, 0, 0.5);
             background-blend-mode: multiply;
         }
 
@@ -184,6 +186,11 @@
             text-align: center;
         }
 
+        .help-button p {
+            font-size: 1em; /* Sesuaikan ukuran font untuk ponsel di media query */
+            margin-bottom: 5px;
+        }
+
         .help-button a {
             display: inline-block;
             background-color: #25d366; /* Warna hijau WhatsApp */
@@ -199,25 +206,96 @@
             background-color: #128c7e;
         }
 
-        /* Responsif */
+        /* Responsif untuk tampilan ponsel (lebar layar maksimum 768px) */
         @media (max-width: 768px) {
+            body {
+                padding: 10px; /* Kurangi padding body untuk layar sangat kecil */
+            }
+
             .container {
                 flex-direction: column;
-                height: auto;
+                height: auto; /* Biarkan tinggi container menyesuaikan konten */
+                width: 100%; /* Container mengisi seluruh lebar layar ponsel */
             }
 
             .left-side, .right-side {
-                flex: none;
-                width: 100%;
-                padding: 30px;
+                flex: none; /* Jangan bagi rata ruang pada mode vertikal */
+                width: 100%; /* Kedua sisi mengisi seluruh lebar */
+                padding: 20px; /* Kurangi padding di dalam sisi untuk layar kecil */
             }
 
             .left-content {
-                max-width: 95%;
+                max-width: 95%; /* Lebar konten kiri hampir penuh */
+            }
+
+            .left-content h2 {
+                font-size: 1.8em; /* Ukuran font lebih kecil untuk judul di ponsel */
+                margin-bottom: 10px;
+            }
+
+            .left-content p {
+                font-size: 1em; /* Ukuran font lebih kecil untuk paragraf di ponsel */
+                line-height: 1.5;
             }
 
             .right-side {
-                padding-top: 0;
+                padding-top: 0; /* Hilangkan padding atas pada sisi kanan saat di bawah */
+            }
+
+            .login-container {
+                width: 95%; /* Lebar form login hampir penuh */
+                max-width: none; /* Hilangkan max-width agar bisa lebih lebar di ponsel */
+            }
+
+            .login-header {
+                margin-bottom: 20px; /* Kurangi margin bawah header login */
+            }
+
+            .login-header h2 {
+                font-size: 1.6em; /* Ukuran font lebih kecil untuk judul login di ponsel */
+                margin-bottom: 8px;
+            }
+
+            .login-header p {
+                font-size: 0.85em; /* Ukuran font lebih kecil untuk deskripsi login di ponsel */
+            }
+
+            .form-group {
+                margin-bottom: 15px; /* Kurangi margin bawah form group */
+            }
+
+            .form-group label {
+                font-size: 0.8em; /* Ukuran font lebih kecil untuk label di ponsel */
+                margin-bottom: 3px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="password"] {
+                padding: 10px; /* Kurangi padding input di ponsel */
+                font-size: 0.9em; /* Ukuran font lebih kecil untuk input di ponsel */
+            }
+
+            .form-group button {
+                padding: 12px 15px; /* Kurangi padding tombol di ponsel */
+                font-size: 1em; /* Ukuran font lebih kecil untuk tombol di ponsel */
+            }
+
+            .error-message {
+                font-size: 0.8em; /* Ukuran font lebih kecil untuk pesan error di ponsel */
+                margin-top: 10px;
+            }
+
+            .help-button {
+                margin-top: 15px; /* Kurangi margin atas tombol bantuan */
+            }
+
+            .help-button p {
+                font-size: 0.9em; /* Sesuaikan ukuran font tombol bantuan untuk ponsel */
+            }
+
+            .help-button a {
+                padding: 8px 15px; /* Kurangi padding tombol bantuan di ponsel */
+                font-size: 0.9em;
             }
         }
     </style>
