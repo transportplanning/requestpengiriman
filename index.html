@@ -8,72 +8,39 @@
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            overflow: auto; /* Ubah menjadi auto agar konten tidak terpotong pada layar kecil */
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #f0f4f7;
-            color: #37474f;
-            padding: 20px; /* Tambahkan sedikit padding untuk layar kecil */
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
             box-sizing: border-box;
+            position: relative; /* Untuk menampung pseudo-element jika menggunakan CSS ornamen */
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: transparent;
         }
 
         .container {
-            display: flex;
-            width: 90%;
-            max-width: 1200px;
-            height: 550px; /* Tetapkan tinggi untuk desktop */
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #34495e;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-        }
-
-        .left-side {
-            flex: 1;
-            background-image: url('sampul2.jfif');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 40px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.5);
-            background-blend-mode: multiply;
-        }
-
-        .left-content {
-            max-width: 80%;
-        }
-
-        .left-content h2 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .left-content p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        .right-side {
-            flex: 1;
-            background-color: #fff;
-            color: #37474f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-        }
-
-        .login-container {
             width: 90%;
-            max-width: 350px;
+            max-width: 400px;
             text-align: center;
+            z-index: 1;
+            transition: all 0.3s ease;
         }
 
         .login-header {
@@ -81,16 +48,53 @@
         }
 
         .login-header h2 {
-            font-size: 2em;
+            font-size: 2.2em;
             margin-top: 0;
             margin-bottom: 10px;
-            color: #263238;
+            color: #ecf0f1;
+            font-weight: 600;
         }
 
         .login-header p {
-            color: #78909c;
-            font-size: 0.9em;
-            opacity: 0.8;
+            color: #bdc3c7;
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        #loginOptions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #loginOptions button {
+            background: #3498db;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease-in-out;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #loginOptions button:hover {
+            background: #2980b9;
+            transform: scale(1.01);
+        }
+
+        .login-form {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .login-form.active {
+            display: block;
         }
 
         .form-group {
@@ -100,50 +104,55 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 0.9em;
+            margin-bottom: 6px;
+            font-size: 0.95em;
             font-weight: 500;
-            color: #263238;
+            color: #ecf0f1;
         }
 
         .form-group input[type="text"],
         .form-group input[type="password"] {
-            width: 100%;
+            width: calc(100% - 24px);
             padding: 12px;
-            border: 1px solid #cfd8dc;
-            border-radius: 5px;
+            border: 1px solid #7f8c8d;
+            border-radius: 8px;
             box-sizing: border-box;
-            font-size: 1em;
+            font-size: 0.95em;
             transition: border-color 0.3s ease;
+            background-color: #2c3e50;
+            color: #ecf0f1;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #03a9f4;
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
         }
 
-        .form-group button {
-            background: #03a9f4; /* Warna tombol login menarik */
+        .form-group button[type="submit"] {
+            background: #2ecc71;
             color: white;
             padding: 14px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 500;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .form-group button:hover {
-            background: #0288d1;
+        .form-group button[type="submit"]:hover {
+            background: #27ae60;
+            transform: scale(1.01);
         }
 
         .error-message {
-            color: #e53935;
+            color: #e74c3c;
             margin-top: 15px;
             text-align: center;
-            font-size: 0.9em;
+            font-size: 0.95em;
         }
 
         .loading-overlay {
@@ -152,7 +161,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(44, 62, 80, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -162,17 +171,12 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         .loader {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #03a9f4;
+            border: 5px solid #34495e;
+            border-top: 5px solid #3498db;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             animation: spin 2s linear infinite;
         }
 
@@ -182,163 +186,183 @@
         }
 
         .help-button {
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: center;
         }
 
         .help-button p {
-            font-size: 1em; /* Sesuaikan ukuran font untuk ponsel di media query */
-            margin-bottom: 5px;
+            font-size: 0.95em;
+            margin-bottom: 8px;
+            color: #bdc3c7;
         }
 
         .help-button a {
             display: inline-block;
             background-color: #25d366; /* Warna hijau WhatsApp */
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 18px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .help-button a:hover {
             background-color: #128c7e;
+            transform: scale(1.01);
         }
 
-        /* Responsif untuk tampilan ponsel (lebar layar maksimum 768px) */
+        .back-to-options {
+            margin-top: 15px;
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-options:hover {
+            color: #2980b9;
+        }
+
+        /* Responsif */
         @media (max-width: 768px) {
-            body {
-                padding: 10px; /* Kurangi padding body untuk layar sangat kecil */
-            }
-
             .container {
-                flex-direction: column;
-                height: auto; /* Biarkan tinggi container menyesuaikan konten */
-                width: 100%; /* Container mengisi seluruh lebar layar ponsel */
-            }
-
-            .left-side, .right-side {
-                flex: none; /* Jangan bagi rata ruang pada mode vertikal */
-                width: 100%; /* Kedua sisi mengisi seluruh lebar */
-                padding: 20px; /* Kurangi padding di dalam sisi untuk layar kecil */
-            }
-
-            .left-content {
-                max-width: 95%; /* Lebar konten kiri hampir penuh */
-            }
-
-            .left-content h2 {
-                font-size: 1.8em; /* Ukuran font lebih kecil untuk judul di ponsel */
-                margin-bottom: 10px;
-            }
-
-            .left-content p {
-                font-size: 1em; /* Ukuran font lebih kecil untuk paragraf di ponsel */
-                line-height: 1.5;
-            }
-
-            .right-side {
-                padding-top: 0; /* Hilangkan padding atas pada sisi kanan saat di bawah */
-            }
-
-            .login-container {
-                width: 95%; /* Lebar form login hampir penuh */
-                max-width: none; /* Hilangkan max-width agar bisa lebih lebar di ponsel */
-            }
-
-            .login-header {
-                margin-bottom: 20px; /* Kurangi margin bawah header login */
+                padding: 30px;
+                max-width: 95%;
             }
 
             .login-header h2 {
-                font-size: 1.6em; /* Ukuran font lebih kecil untuk judul login di ponsel */
-                margin-bottom: 8px;
+                font-size: 2em;
             }
 
             .login-header p {
-                font-size: 0.85em; /* Ukuran font lebih kecil untuk deskripsi login di ponsel */
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+
+            #loginOptions {
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+
+            #loginOptions button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+                margin-bottom: 10px;
             }
 
             .form-group {
-                margin-bottom: 15px; /* Kurangi margin bawah form group */
+                margin-bottom: 15px;
             }
 
             .form-group label {
-                font-size: 0.8em; /* Ukuran font lebih kecil untuk label di ponsel */
-                margin-bottom: 3px;
+                font-size: 0.85em;
+                margin-bottom: 5px;
             }
 
-            .form-group input[type="text"],
-            .form-group input[type="password"] {
-                padding: 10px; /* Kurangi padding input di ponsel */
-                font-size: 0.9em; /* Ukuran font lebih kecil untuk input di ponsel */
+            .form-group input {
+                padding: 10px;
+                font-size: 0.9em;
             }
 
-            .form-group button {
-                padding: 12px 15px; /* Kurangi padding tombol di ponsel */
-                font-size: 1em; /* Ukuran font lebih kecil untuk tombol di ponsel */
-            }
-
-            .error-message {
-                font-size: 0.8em; /* Ukuran font lebih kecil untuk pesan error di ponsel */
-                margin-top: 10px;
+            .form-group button[type="submit"] {
+                padding: 12px 15px;
+                font-size: 0.95em;
             }
 
             .help-button {
-                margin-top: 15px; /* Kurangi margin atas tombol bantuan */
+                margin-top: 25px;
             }
 
             .help-button p {
-                font-size: 0.9em; /* Sesuaikan ukuran font tombol bantuan untuk ponsel */
+                font-size: 0.9em;
             }
 
             .help-button a {
-                padding: 8px 15px; /* Kurangi padding tombol bantuan di ponsel */
                 font-size: 0.9em;
+                padding: 8px 15px;
             }
+
+            .back-to-options {
+                margin-top: 12px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Ornamen garis tipis (aktif) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 5px,
+                rgba(255, 255, 255, 0.02) 5px,
+                rgba(255, 255, 255, 0.02) 10px
+            );
+            z-index: -2;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="container">
-        <div class="left-side">
-            <div class="left-content">
-                <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
-                <p>Platform responsif untuk memudahkan Anda dalam mengajukan dan melacak permintaan pengiriman Anda.</p>
-            </div>
+        <div class="login-header">
+            <h2>Akses Akun</h2>
+            <p>Silakan pilih jenis akun untuk login.</p>
         </div>
-        <div class="right-side">
-            <div class="login-container">
-                <div class="login-header">
-                    <h2>Akses Akun</h2>
-                    <p>Silakan masukkan username dan kata sandi Anda.</p>
-                </div>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" placeholder="Masukkan username Anda" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Kata Sandi:</label>
-                        <input type="password" id="password" name="password" placeholder="Masukkan kata sandi Anda" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit">
-                            <i class="fas fa-sign-in-alt"></i> Masuk
-                        </button>
-                    </div>
-                    <div id="errorMessage" class="error-message" style="display: none;"></div>
-                </form>
-                <div class="help-button">
-                    <p>Butuh bantuan?</p>
-                    <a href="https://wa.me/6287874805035?text=Halo,%20saya%20membutuhkan%20bantuan%20dengan%20portal%20pengiriman" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Hubungi Admin
-                    </a>
-                </div>
+
+        <div id="loginOptions">
+            <button id="storeLoginBtn"><i class="fas fa-store"></i> Login sebagai Store</button>
+            <button id="adminLoginBtn"><i class="fas fa-user-shield"></i> Login sebagai Admin</button>
+        </div>
+
+        <form id="storeLoginForm" class="login-form">
+            <div class="form-group">
+                <label for="storeUsername">Username:</label>
+                <input type="text" id="storeUsername" name="storeUsername" placeholder="Masukkan username Anda" required>
             </div>
+            <div class="form-group">
+                <label for="storePassword">Kata Sandi:</label>
+                <input type="password" id="storePassword" name="storePassword" placeholder="Masukkan kata sandi Anda" required>
+            </div>
+            <div class="form-group">
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            </div>
+            <div id="storeErrorMessage" class="error-message" style="display: none;"></div>
+            <button type="button" class="back-to-options" data-target="loginOptions">Kembali ke Pilihan Login</button>
+        </form>
+
+        <form id="adminLoginForm" class="login-form">
+            <div class="form-group">
+                <label for="adminUsername">Username:</label>
+                <input type="text" id="adminUsername" name="adminUsername" placeholder="Masukkan username Anda" required>
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Kata Sandi:</label>
+                <input type="password" id="adminPassword" name="adminPassword" placeholder="Masukkan kata sandi Anda" required>
+            </div>
+            <div class="form-group">
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Masuk</button>
+            </div>
+            <div id="adminErrorMessage" class="error-message" style="display: none;"></div>
+            <button type="button" class="back-to-options" data-target="loginOptions">Kembali ke Pilihan Login</button>
+        </form>
+
+        <div class="help-button">
+            <p>Butuh bantuan?</p>
+            <a href="https://wa.me/6287874805035?text=Halo,%20saya%20membutuhkan%20bantuan%20dengan%20portal%20pengiriman" target="_blank">
+                <i class="fab fa-whatsapp"></i> Hubungi Admin
+            </a>
         </div>
     </div>
 
@@ -346,39 +370,162 @@
         <div class="loader"></div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
-            const errorMessageDiv = document.getElementById('errorMessage');
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            const loginButton = loginForm.querySelector('button');
+        particlesJS.load('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 900
+                    }
+                },
+                "color": {
+                    "value": "#3498db"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 180,
+                    "color": "#3498db",
+                    "opacity": 0.7,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "bounce",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
 
-            loginForm.addEventListener('submit', function(event) {
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginOptionsDiv = document.getElementById('loginOptions');
+            const storeLoginBtn = document.getElementById('storeLoginBtn');
+            const adminLoginBtn = document.getElementById('adminLoginBtn');
+            const storeLoginForm = document.getElementById('storeLoginForm');
+            const adminLoginForm = document.getElementById('adminLoginForm');
+            const storeErrorMessageDiv = document.getElementById('storeErrorMessage');
+            const adminErrorMessageDiv = document.getElementById('adminErrorMessage');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            const backToOptionsButtons = document.querySelectorAll('.back-to-options');storeLoginBtn.addEventListener('click', function() {
+                loginOptionsDiv.style.display = 'none';
+                storeLoginForm.classList.add('active');
+                storeErrorMessageDiv.style.display = 'none';
+            });
+
+            adminLoginBtn.addEventListener('click', function() {
+                loginOptionsDiv.style.display = 'none';
+                adminLoginForm.classList.add('active');
+                adminErrorMessageDiv.style.display = 'none';
+            });
+
+            backToOptionsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(this.closest('.login-form').id).classList.remove('active');
+                    document.getElementById(targetId).style.display = 'flex';
+                });
+            });
+
+            function handleLoginSubmit(event, formId, usernameId, passwordId, errorMessageId, targetUrl) {
                 event.preventDefault();
 
-                const usernameInput = document.getElementById('username').value;
-                const passwordInput = document.getElementById('password').value;
+                const form = document.getElementById(formId);
+                const usernameInput = document.getElementById(usernameId).value;
+                const passwordInput = document.getElementById(passwordId).value;
+                const errorMessageDiv = document.getElementById(errorMessageId);
+                const submitButton = form.querySelector('button[type="submit"]');
 
-                // Tampilkan animasi loading
                 loadingOverlay.classList.add('active');
-                loginButton.disabled = true;
-                loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
 
                 setTimeout(() => {
-                    // Sembunyikan animasi loading
                     loadingOverlay.classList.remove('active');
-                    loginButton.disabled = false;
-                    loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Masuk';
 
-                    if (usernameInput === 'hci' && passwordInput === '123') {
-                        window.location.href = 'home.html'; // Arahkan ke home.html jika login sebagai hci
-                    } else if (usernameInput === 'admin' && passwordInput === '123') {
-                        window.location.href = 'database.html'; // Arahkan ke database.html jika login sebagai admin
+                    if (usernameInput === targetUrl.username && passwordInput === targetUrl.password) {
+                        window.location.href = targetUrl.url;
                     } else {
                         errorMessageDiv.textContent = 'Username atau Kata Sandi salah.';
                         errorMessageDiv.style.display = 'block';
                     }
-                }, 1500); // Simulasi proses login selama 1.5 detik
+                }, 1500);
+            }
+
+            storeLoginForm.addEventListener('submit', function(event) {
+                handleLoginSubmit(event, 'storeLoginForm', 'storeUsername', 'storePassword', 'storeErrorMessage', {
+                    username: 'hci',
+                    password: '123',
+                    url: 'home.html'
+                });
+            });
+
+            adminLoginForm.addEventListener('submit', function(event) {
+                handleLoginSubmit(event, 'adminLoginForm', 'adminUsername', 'adminPassword', 'adminErrorMessage', {
+                    username: 'admin',
+                    password: '123',
+                    url: 'database.html'
+                });
             });
         });
     </script>
