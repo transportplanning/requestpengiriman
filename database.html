@@ -9,29 +9,33 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            /* Ganti background-color dengan background-image */
-            background-image: url('sampuldatabase.jpg');
-            background-size: cover; /* Untuk memastikan gambar menutupi seluruh area */
-            background-position: center; /* Untuk memposisikan gambar di tengah */
-            background-repeat: no-repeat; /* Agar gambar tidak diulang */
-            color: #333; /* Teks hitam */
+            background-image: url('sampuldatabase.jpg'); /* Pastikan path gambar benar */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #495057; /* Darker text for better readability */
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
         }
 
         .admin-header {
-            background-color: #FFFFFF; /* Header putih */
-            color: #333;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            color: #343a40; /* Darker header text */
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Shadow tipis */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* More noticeable shadow */
+            position: sticky; /* Keep header at the top on scroll */
+            top: 0;
+            z-index: 100;
         }
 
         .admin-title {
-            font-size: 1.8em;
+            font-size: 2em; /* Larger title */
             font-weight: bold;
-            color: #007BFF; /* Aksen biru */
+            color: #007bff; /* Primary blue */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
         }
 
         .admin-nav ul {
@@ -42,7 +46,7 @@
         }
 
         .admin-nav ul li {
-            margin-left: 15px;
+            margin-left: 20px;
         }
 
         .admin-nav ul li:first-child {
@@ -54,53 +58,62 @@
             align-items: center;
             color: #555;
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 6px; /* More rounded buttons */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
         }
 
         .admin-nav ul li a i {
-            margin-right: 8px;
-            font-size: 1em;
-            color: #28A745; /* Aksen hijau */
+            margin-right: 10px;
+            font-size: 1.1em;
+            color: #28a745; /* Success green */
         }
 
         .admin-nav ul li a:hover {
-            background-color: #E9ECEF;
-            color: #007BFF;
+            background-color: #e9ecef;
+            color: #007bff;
+            transform: scale(1.05); /* Slight scale on hover */
         }
 
         .logout-button {
             background: none;
-            border: 1px solid #DC3545; /* Border merah */
-            color: #DC3545;
+            border: 2px solid #dc3545; /* Danger red, thicker border */
+            color: #dc3545;
             font-size: 1em;
             cursor: pointer;
-            transition: color 0.3s ease, border-color 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 4px;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
+            padding: 10px 15px;
+            border-radius: 6px; /* More rounded */
+            font-weight: bold; /* Make it stand out */
         }
 
         .logout-button:hover {
-            color: #FFFFFF;
-            background-color: #DC3545;
-            border-color: #DC3545;
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+            transform: scale(1.05); /* Slight scale on hover */
         }
 
         .container {
-            padding: 30px;
-            margin: 20px auto;
-            max-width: 1000px;
-            background-color: rgba(255, 255, 255, 0.9); /* Container putih dengan sedikit transparansi */
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow halus */
+            padding: 40px; /* More padding */
+            margin: 30px auto; /* More margin */
+            max-width: 1100px; /* Slightly wider container */
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            border-radius: 8px; /* More rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
             position: relative;
+            animation: fadeIn 0.5s ease-out; /* Simple fade-in animation */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .content-section {
             display: none;
-            padding: 20px;
-            border-top: 1px solid #E0E0E0;
+            padding: 30px 0; /* More vertical padding */
+            border-top: 1px solid #dee2e6; /* Light gray separator */
         }
 
         .content-section.active {
@@ -109,216 +122,234 @@
         }
 
         h1 {
-            color: #333;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #007BFF;
-            padding-bottom: 12px;
+            color: #343a40; /* Darker heading */
+            margin-bottom: 30px;
+            border-bottom: 3px solid #007bff; /* Primary blue, thicker line */
+            padding-bottom: 15px;
+            font-size: 2.5em; /* Larger main heading */
+            text-align: center; /* Center the main heading */
         }
 
         h2 {
-            color: #007BFF;
-            margin-top: 18px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #E0E0E0;
-            padding-bottom: 8px;
+            color: #007bff; /* Primary blue */
+            margin-top: 25px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e0e0e0; /* Light gray separator */
+            padding-bottom: 10px;
+            font-size: 1.8em;
         }
 
         h3 {
-            color: #555;
-            margin-top: 15px;
-            margin-bottom: 8px;
+            color: #495057; /* Darker subheading */
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            font-weight: bold; /* Make subheadings bolder */
         }
 
         p {
-            color: #333;
-            margin-bottom: 10px;
+            color: #555;
+            margin-bottom: 15px;
         }
 
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 500px; /* Tinggi iframe disesuaikan */
-            border: 1px solid #E0E0E0;
-            border-radius: 4px;
+            height: 600px; /* Increased iframe height */
+            border: 1px solid #ced4da; /* Light gray border */
+            border-radius: 6px;
             overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for iframe */
         }
 
         .fullscreen-button {
             position: absolute;
-            top: 8px;
-            right: 8px;
-            background-color: rgba(0, 123, 255, 0.8);
-            color: #FFFFFF;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 123, 255, 0.9); /* Primary blue, slightly transparent */
+            color: #fff;
             border: none;
-            padding: 6px 10px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             cursor: pointer;
             z-index: 10;
-            opacity: 0.7;
-            transition: opacity 0.3s ease, background-color 0.3s ease;
+            opacity: 0.8;
+            transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
         }
 
         .fullscreen-button:hover {
             opacity: 1;
-            background-color: #007BFF;
+            background-color: #0056b3;
+            transform: scale(1.1); /* Slight scale on hover */
         }
 
         .help-button-container {
             position: fixed;
-            bottom: 15px;
-            right: 15px;
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
         }
 
         .help-button {
-            background-color: #007BFF;
-            color: #FFFFFF;
+            background-color: #28a745; /* Success green */
+            color: #fff;
             border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
+            padding: 10px 15px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 1em;
             display: flex;
             align-items: center;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
             text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
         }
 
         .help-button i {
-            margin-right: 5px;
-            font-size: 1em;
-            color: #FFFFFF;
+            margin-right: 8px;
+            font-size: 1.1em;
+            color: #fff;
         }
 
         .help-button:hover {
-            background-color: #0056b3;
+            background-color: #1e7e34;
+            transform: scale(1.05); /* Slight scale on hover */
         }
 
-        /* Style untuk panduan interaktif */
+        /* Improved Card Styling */
         .feature-item {
-            background-color: #E9ECEF;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            border-left: 5px solid #007BFF;
+            background-color: #fff; /* White background for cards */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px; /* Rounded corners */
+            border-left: 8px solid #007bff; /* Accent color on the left */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
         }
 
         .feature-item h3 {
-            color: #007BFF;
+            color: #007bff;
             margin-top: 0;
+            margin-bottom: 10px;
         }
 
         .feature-item p {
-            color: #555;
+            color: #6c757d; /* Slightly lighter paragraph text */
         }
 
-        /* Responsive Design for Mobile (max-width: 768px) */
+        /* Responsive Design for Mobile (max-width: 768px) - Adjusted for better readability */
         @media (max-width: 768px) {
             body {
-                background-size: cover; /* Pastikan gambar tetap menutupi layar kecil */
+                background-size: cover;
             }
 
             .admin-header {
                 flex-direction: column;
                 align-items: center;
-                padding: 10px;
+                padding: 15px;
+                position: static; /* Remove sticky on small screens */
             }
 
             .admin-title {
-                margin-bottom: 8px;
-                font-size: 1.5em;
+                margin-bottom: 10px;
+                font-size: 1.8em;
             }
 
             .admin-nav ul {
                 flex-direction: column;
                 width: 100%;
-                margin-top: 8px;
+                margin-top: 10px;
             }
 
             .admin-nav ul li {
                 margin-left: 0;
-                margin-bottom: 4px;
+                margin-bottom: 8px;
                 width: 100%;
             }
 
             .admin-nav ul li a {
                 display: flex;
                 justify-content: center;
-                padding: 10px 12px;
-                font-size: 0.9em;
+                padding: 12px 15px;
+                font-size: 0.95em;
             }
 
             .admin-nav ul li a i {
-                margin-right: 6px;
+                margin-right: 8px;
             }
 
             .logout-button {
                 width: 100%;
                 text-align: center;
-                padding: 10px 12px;
-                font-size: 0.9em;
+                padding: 12px 15px;
+                font-size: 0.95em;
             }
 
             .container {
-                padding: 15px;
-                margin: 10px auto;
+                padding: 20px;
+                margin: 15px auto;
                 border-radius: 0;
-                background-color: rgba(255, 255, 255, 0.95); /* Lebih solid di mobile */
+                background-color: rgba(255, 255, 255, 0.95);
             }
 
             h1 {
-                font-size: 1.4em;
+                font-size: 1.8em;
                 text-align: center;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 padding-bottom: 10px;
             }
 
             h2 {
-                font-size: 1.2em;
-                margin-top: 15px;
-                margin-bottom: 10px;
-                padding-bottom: 6px;
+                font-size: 1.4em;
+                margin-top: 20px;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
             }
 
             h3 {
-                font-size: 1em;
+                font-size: 1.1em;
             }
 
             p {
-                font-size: 0.85em;
+                font-size: 0.9em;
             }
 
             .iframe-container {
-                height: 250px; /* Adjust iframe height for mobile */
+                height: 300px; /* Adjust iframe height for mobile */
             }
 
             .fullscreen-button {
-                top: 5px;
-                right: 5px;
-                padding: 5px 8px;
-                font-size: 0.7em;
+                top: 8px;
+                right: 8px;
+                padding: 6px 10px;
+                font-size: 0.8em;
             }
 
             .help-button-container {
-                bottom: 10px;
-                left: 10px;
+                bottom: 15px;
+                left: 15px;
                 right: auto;
             }
 
             .help-button {
-                font-size: 0.8em;
-                padding: 6px 8px;
+                font-size: 0.9em;
+                padding: 8px 10px;
             }
 
             .help-button i {
-                margin-right: 3px;
-                font-size: 0.9em;
+                margin-right: 5px;
+                font-size: 1em;
             }
 
             .feature-item {
-                padding: 10px;
-                margin-bottom: 10px;
-                border-left-width: 3px;
+                padding: 15px;
+                margin-bottom: 15px;
+                border-left-width: 5px;
             }
         }
     </style>
@@ -340,46 +371,46 @@
 
     <div class="container">
         <h1>Selamat Datang di Admin Portal</h1>
-        <p>Halaman ini adalah pusat kendali Anda untuk memantau dan mengakses database terkait operasional taruna. Setiap menu di atas menyediakan akses cepat ke informasi penting yang Anda butuhkan untuk perencanaan dan pelacakan.</p>
+        <p>Pantau dan kelola database operasional taruna Anda dengan mudah. Akses cepat ke informasi penting untuk perencanaan dan pelacakan melalui menu di atas.</p>
 
         <div id="panduan" class="content-section active">
             <h2><i class="fas fa-book-open"></i> Panduan Penggunaan Portal Admin</h2>
-            <p>Selamat datang di halaman panduan Portal Admin. Kami akan memandu Anda melalui fitur-fitur yang tersedia:</p>
+            <p>Pelajari cara menggunakan fitur-fitur yang tersedia di Portal Admin:</p>
 
             <div class="feature-item">
                 <h3><i class="fas fa-comment-dots"></i> Feedback</h3>
-                <p>Menu ini menyediakan akses ke <strong>Database Feedback Pengiriman</strong>. Anda dapat melihat dan menganalisis umpan balik dari pengguna terkait proses pengiriman. Informasi ini penting untuk mengidentifikasi area yang perlu ditingkatkan.</p>
+                <p>Akses dan analisis <strong>Database Feedback Pengiriman</strong>. Dapatkan wawasan dari umpan balik pengguna untuk mengoptimalkan proses pengiriman.</p>
             </div>
 
             <div class="feature-item">
                 <h3><i class="fas fa-map-marker-alt"></i> Tracking RT</h3>
-                <p>Menu <strong>Tracking RT</strong> memungkinkan Anda untuk mengisi data status RT taruna, yaitu apakah <strong>AB</strong>, <strong>TD </strong>, atau <strong>Sewa</strong>. Informasi ini membantu dalam memantau aktivitas dan ketersediaan taruna.</p>
+                <p>Perbarui dan pantau status <strong>Rencana Tugas (RT)</strong> taruna (AB, TD, atau Sewa) untuk memantau aktivitas dan ketersediaan.</p>
             </div>
 
             <div class="feature-item">
                 <h3><i class="fas fa-truck"></i> Plan Pengiriman</h3>
-                <p>Pada menu <strong>Plan Pengiriman</strong>, Anda dapat mengakses <strong>Database Plan Pengiriman</strong>. Di sini Anda dapat memasukkan dan melihat data <strong>soken</strong> (nomor identifikasi pengiriman) dan <strong>nama soken</strong>. Informasi ini sangat berguna bagi tim sales untuk mengetahui detail rencana pengiriman dan memudahkan koordinasi.</p>
+                <p>Kelola <strong>Database Plan Pengiriman</strong> dengan memasukkan dan melihat data <strong>soken</strong> dan <strong>nama soken</strong>, memfasilitasi koordinasi tim sales.</p>
             </div>
 
             <div class="feature-item">
                 <h3><i class="fas fa-check-double"></i> Konfirmasi</h3>
-                <p>Menu <strong>Konfirmasi</strong> menyediakan akses ke <strong>Database Konfirmasi DO Project</strong>. Anda dapat menggunakan fitur ini untuk memantau dan mengelola konfirmasi terkait Delivery Order (DO) untuk berbagai proyek yang melibatkan taruna, memastikan semua tugas terlaksana dengan baik.</p>
+                <p>Pantau dan kelola <strong>Database Konfirmasi DO Project</strong> untuk memastikan kelancaran Delivery Order (DO) proyek-proyek taruna.</p>
             </div>
 
-            <p>Untuk menavigasi antar menu, silakan klik ikon atau teks menu yang tersedia di bagian atas halaman.</p>
+            <p>Gunakan menu di bagian atas untuk menavigasi ke berbagai bagian portal.</p>
         </div>
 
         <div id="feedback" class="content-section">
             <h2>Database Feedback Pengiriman</h2>
             <div class="iframe-container">
-                <iframe id="iframe-feedback" src="https://docs.google.com/spreadsheets/d/1Gb-oIMzdalo58bTsMKAldFhq0Ltnn_9_PBaxOJ34WPE/edit?resourcekey=&gid=1216889101#gid=1216889101" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe id="iframe-feedback" src="https://docs.google.com/spreadsheets/d/1Gb-oIMzdalo58bTsMKAldFhq0Ltnn_9_PBaxOJ34WPE/edit?resourcekey=&gid=12168891101#gid=1216889101" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-feedback')"><i class="fas fa-expand"></i></button>
             </div>
         </div>
 
         <div id="tracking_rt" class="content-section">
             <h2>Database Tracking RT (Rencana Tugas)</h2>
-            <p>Gunakan halaman ini untuk mengisi status Rencana Tugas taruna (AB, TD, atau Sewa).</p>
+            <p>Isi dan pantau status Rencana Tugas taruna (AB, TD, atau Sewa) secara real-time.</p>
             <div class="iframe-container">
                 <iframe id="iframe-tracking_rt" src="https://docs.google.com/spreadsheets/d/15Yrb3SmT7n7WSGdkn3VqMO3eJ78CrDnayULTh_4GQMQ/edit?gid=413365647#gid=413365647" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-tracking_rt')"><i class="fas fa-expand"></i></button>
@@ -388,7 +419,7 @@
 
         <div id="plan_pengiriman" class="content-section">
             <h2>Database Plan Pengiriman (Soken)</h2>
-            <p>Masukkan dan lihat data soken dan nama soken di halaman ini untuk keperluan tim sales.</p>
+            <p>Kelola informasi soken dan nama soken untuk mendukung operasional tim sales.</p>
             <div class="iframe-container">
                 <iframe id="iframe-plan" src="https://docs.google.com/spreadsheets/d/1s6ZGlOLdrIHdNnKdVHdKJa41KEcTtRebwmJxDKgo2R4/edit?usp=sharing" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-plan')"><i class="fas fa-expand"></i></button>
@@ -397,6 +428,7 @@
 
         <div id="konfirmasi" class="content-section">
             <h2>Database Konfirmasi DO Project</h2>
+            <p>Verifikasi dan lacak konfirmasi Delivery Order (DO) untuk berbagai proyek taruna.</p>
             <div class="iframe-container">
                 <iframe id="iframe-konfirmasi" src="https://docs.google.com/spreadsheets/d/1w484eeoDZeRS-jbIdp8f0t2_qN2jSxgfPv_ilV6e8kQ/edit?usp=sharing" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-konfirmasi')"><i class="fas fa-expand"></i></button>
