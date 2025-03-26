@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar PIC</title>
+    <title>Jajaran PIC</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1A237E, #0D47A1); /* Latar belakang gradien primer */
+            background: linear-gradient(135deg, #1A237E, #0D47A1);
             margin: 0;
             padding: 40px;
             color: #FFFFFF;
@@ -24,33 +24,44 @@
 
         .interactive-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
-            margin-bottom: 30px;
-            padding: 15px 30px;
-            background-color: rgba(255, 215, 0, 0.1); /* Latar belakang emas transparan */
+            margin-bottom: 40px;
+            padding: 18px 35px;
+            background-color: rgba(255, 215, 0, 0.15);
             color: #FFD700;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(255, 215, 0, 0.35);
+            border: 1px solid rgba(255, 215, 0, 0.35);
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         .pic-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid responsif */
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px; /* Reduced margin for top container */
             width: 95%;
-            max-width: 1200px;
+            max-width: 1300px;
+        }
+
+        .bottom-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px; /* Margin for bottom container */
+            width: 95%;
+            max-width: 1300px;
+            border-top: 2px dashed rgba(255, 255, 255, 0.3); /* Separator */
+            padding-top: 30px;
         }
 
         .pic-item {
             background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
             text-align: center;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s;
             color: #37474F;
@@ -65,16 +76,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background-color: #FFD700; /* Garis emas di atas */
+            height: 6px;
+            background-color: #FFD700;
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.35s ease-in-out;
         }
 
         .pic-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 6px 20px rgba(255, 215, 0, 0.5); /* Efek glow emas yang lebih kuat */
+            transform: translateY(-7px);
+            box-shadow: 0px 8px 25px rgba(255, 215, 0, 0.55);
         }
 
         .pic-item:hover::before {
@@ -82,120 +93,81 @@
         }
 
         .pic-image {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            margin-bottom: 15px;
-            border: 2px solid #FFD700;
+            margin-bottom: 20px;
+            border: 3px solid #FFD700;
             object-fit: cover;
         }
 
         .pic-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: #1A237E;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .pic-status {
+        .home-button {
+            margin-top: 40px;
+            padding: 14px 28px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .on-duty {
-            color: #2E7D32;
-        }
-
-        .libur {
-            color: #B71C1C;
-        }
-
-        .pic-button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 16px;
-            background-color: #FFD700;
             color: #1A237E;
-            border: none;
-            border-radius: 6px;
+            background-color: #FFD700;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0px 5px 12px rgba(255, 215, 0, 0.7);
+            transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
         }
 
-        .pic-button:hover {
+        .home-button:hover {
             background-color: #F0C808;
-            transform: scale(1.03);
+            color: #121212;
+            border-color: #F0C808;
+            box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.9);
+            transform: scale(1.07);
         }
-
-          /* Tombol Home */
-    .home-button {
-        margin-top: 30px; /* Berikan jarak dari daftar PIC */
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #1A237E; /* Teks warna primer */
-        background-color: #FFD700; /* Latar belakang emas */
-        border: 2px solid #FFD700; /* Border emas tipis */
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.6); /* Shadow emas yang lebih terang */
-        transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s; /* Tambahkan transisi untuk semua properti */
-    }
-
-    .home-button:hover {
-        background-color: #F0C808; /* Warna emas lebih gelap saat hover */
-        color: #121212; /* Teks menjadi gelap saat hover */
-        border-color: #F0C808; /* Border juga berubah warna saat hover */
-        box-shadow: 0px 6px 15px rgba(255, 215, 0, 0.8); /* Shadow emas lebih terang dan besar saat hover */
-        transform: scale(1.05); /* Efek hover sedikit lebih besar */
-    }
     </style>
 </head>
 <body>
-    <div class="interactive-title">DAFTAR PIC</div>
-    <div class="pic-container" id="on-duty-list"></div>
-    <div class="pic-container" id="off-duty-list"></div>
+    <div class="interactive-title">Jajaran PIC</div>
+
+    <div class="pic-container" id="top-pic-list"></div>
+
+    <div class="bottom-container" id="bottom-pic-list"></div>
 
     <button class="home-button" onclick="window.location.href='home.html'">🏠 Home</button>
 
     <script>
         const picData = [
-            { name: "Pak Satiman (SPV)", status: "On Duty", phone: "628567301828" },
-            { name: "Pak Ilyas", status: "On Duty", phone: "6289513768701" },
-            { name: "Pak Irfan", status: "On Duty", phone: "6285215908460" },
-            { name: "Pak Budi", status: "On Duty", phone: "62895340710827" },
-            { name: "Pak Miftah (SPV)", status: "Libur", phone: "6281285526402" },
-            { name: "Pak Denny (SPV)", status: "Libur", phone: "6281383256718" },
-            { name: "Pak Yuni", status: "Libur", phone: "6282122153998" },
-            { name: "Pak Faisal", status: "Libur", phone: "6287874805035" }
+            { name: "Pak Ilyas", image: "ilyas.png" },
+            { name: "Pak Irfan", image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" },
+            { name: "Pak Budi", image: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png" },
+            { name: "Pak Yuni", image: "yuni.png" },
+            { name: "Pak Faisal", image: "faisal.jpeg" }
         ];
 
         function createPicCard(pic) {
             return `
                 <div class="pic-item">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="${pic.name}" class="pic-image">
+                    <img src="${pic.image}" alt="${pic.name}" class="pic-image">
                     <div class="pic-title">${pic.name}</div>
-                    <div class="${pic.status === 'On Duty' ? 'on-duty' : 'libur'}">Status: ${pic.status}</div>
-                    <a href="https://wa.me/${pic.phone}" target="_blank">
-                        <button class="pic-button"><i class="fab fa-whatsapp"></i> Chat Me</button>
-                    </a>
                 </div>
             `;
         }
 
-        document.getElementById("on-duty-list").innerHTML = picData
-            .filter(pic => pic.status === "On Duty")
-            .map(createPicCard)
-            .join('');
+        const topPicListContainer = document.getElementById("top-pic-list");
+        const bottomPicListContainer = document.getElementById("bottom-pic-list");
 
-        document.getElementById("off-duty-list").innerHTML = picData
-            .filter(pic => pic.status === "Libur")
-            .map(createPicCard)
-            .join('');
+        // Ambil 2 data pertama untuk bagian atas
+        const topPics = picData.slice(0, 2);
+        topPicListContainer.innerHTML = topPics.map(createPicCard).join('');
+
+        // Ambil 3 data sisanya untuk bagian bawah
+        const bottomPics = picData.slice(2);
+        bottomPicListContainer.innerHTML = bottomPics.map(createPicCard).join('');
     </script>
 </body>
 </html>
