@@ -273,9 +273,16 @@
         /* Bagian Pimpinan Transport Planner */
         .leaders-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Membuat 4 card berjejer responsif */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Membuat card berjejer responsif */
             gap: 20px;
             margin-bottom: 40px;
+        }
+
+        /* Responsif untuk Leaders Container */
+        @media (max-width: 768px) {
+            .leaders-container {
+                grid-template-columns: 1fr; /* Satu kolom saja pada tampilan ponsel */
+            }
         }
 
         .leader-card {
@@ -415,7 +422,7 @@
 
             .nav-link {
                 display: block;
-                text-align: center;
+                text-align:text-align: center;
                 font-size: 15px;
                 padding: 8px 15px;
             }
@@ -462,7 +469,6 @@
         }
     </style>
 </head>
-<!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -474,8 +480,7 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
-    <body>
+<body>
     <div class="container">
         <header class="header">
             <h1 class="header-title">Layanan Permintaan Pengiriman</h1>
@@ -559,8 +564,7 @@ s0.parentNode.insertBefore(s1,s0);
                     <h3><i class="fa fa-question-circle"></i> Frequently Asked Questions (FAQ)</h3>
                     <p>Temukan jawaban atas pertanyaan umum terkait layanan pengiriman kami. Bagian FAQ menyediakan informasi cepat dan berguna untuk berbagai topik.</p>
                 </div>
-            </div>
-              <div class="slide fade">
+                <div class="slide fade">
                     <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
                     <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
                 </div>
@@ -568,13 +572,11 @@ s0.parentNode.insertBefore(s1,s0);
 
             <div class="dot-container">
                 <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
+                <span class="dot" onclick="currentSlide(2currentSlide(4)"></span>
                 <span class="dot" onclick="currentSlide(5)"></span>
                 <span class="dot" onclick="currentSlide(6)"></span>
                 <span class="dot" onclick="currentSlide(7)"></span>
+                <span class="dot" onclick="currentSlide(8)"></span>
             </div>
 
             <div class="slide-controls">
