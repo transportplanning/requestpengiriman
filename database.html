@@ -6,36 +6,40 @@
     <title>Portal Admin - Pemantauan Database Taruna</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-image: url('sampuldatabase.jpg'); /* Pastikan path gambar benar */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: #495057; /* Darker text for better readability */
-            line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scrollbar */
-        }
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-image: linear-gradient(135deg, rgba(0, 173, 181, 0.05) 25%, transparent 25%,
+                                    transparent 50%, rgba(0, 173, 181, 0.05) 50%, rgba(0, 173, 181, 0.05) 75%,
+                                    transparent 75%, transparent);
+        background-size: 40px 40px;
+        background-position: center;
+        background-repeat: repeat;
+        color: #343a40;
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-attachment: fixed;
+        font-size: 0.95em;
+    }
 
         .admin-header {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-            color: #343a40; /* Darker header text */
-            padding: 20px;
+            background-color: rgba(52, 58, 64, 0.9);
+            color: #f8f9fa;
+            padding: 18px; /* Sedikit dikurangi */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* More noticeable shadow */
-            position: sticky; /* Keep header at the top on scroll */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sedikit disesuaikan */
+            position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .admin-title {
-            font-size: 2em; /* Larger title */
+            font-size: 2em; /* Sedikit dikurangi */
             font-weight: bold;
-            color: #007bff; /* Primary blue */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            color: #00b8d4;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .admin-nav ul {
@@ -46,7 +50,7 @@
         }
 
         .admin-nav ul li {
-            margin-left: 20px;
+            margin-left: 20px; /* Sedikit dikurangi */
         }
 
         .admin-nav ul li:first-child {
@@ -56,53 +60,53 @@
         .admin-nav ul li a {
             display: flex;
             align-items: center;
-            color: #555;
+            color: #f8f9fa;
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px; /* More rounded buttons */
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
+            padding: 10px 15px; /* Sedikit dikurangi */
+            border-radius: 6px; /* Sedikit dikurangi */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
         }
 
         .admin-nav ul li a i {
-            margin-right: 10px;
-            font-size: 1.1em;
-            color: #28a745; /* Success green */
+            margin-right: 8px; /* Sedikit dikurangi */
+            font-size: 1em; /* Sedikit dikurangi */
+            color: #2ecc71;
         }
 
         .admin-nav ul li a:hover {
-            background-color: #e9ecef;
-            color: #007bff;
-            transform: scale(1.05); /* Slight scale on hover */
+            background-color: rgba(0, 184, 212, 0.8);
+            color: #fff;
+            transform: scale(1.05); /* Sedikit dikurangi */
         }
 
         .logout-button {
             background: none;
-            border: 2px solid #dc3545; /* Danger red, thicker border */
-            color: #dc3545;
-            font-size: 1em;
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            font-size: 1em; /* Sedikit dikurangi */
             cursor: pointer;
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
-            padding: 10px 15px;
-            border-radius: 6px; /* More rounded */
-            font-weight: bold; /* Make it stand out */
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-in-out;
+            padding: 10px 15px; /* Sedikit dikurangi */
+            border-radius: 6px; /* Sedikit dikurangi */
+            font-weight: bold;
         }
 
         .logout-button:hover {
             color: #fff;
-            background-color: #dc3545;
-            border-color: #dc3545;
-            transform: scale(1.05); /* Slight scale on hover */
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+            transform: scale(1.05); /* Sedikit dikurangi */
         }
 
         .container {
-            padding: 40px; /* More padding */
-            margin: 30px auto; /* More margin */
-            max-width: 1100px; /* Slightly wider container */
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-            border-radius: 8px; /* More rounded corners */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+            padding: 40px; /* Sedikit dikurangi */
+            margin: 30px auto; /* Sedikit dikurangi */
+            max-width: 1100px; /* Sedikit dikurangi */
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 8px; /* Sedikit dikurangi */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
             position: relative;
-            animation: fadeIn 0.5s ease-out; /* Simple fade-in animation */
+            animation: fadeIn 0.5s ease-out;
         }
 
         @keyframes fadeIn {
@@ -112,8 +116,8 @@
 
         .content-section {
             display: none;
-            padding: 30px 0; /* More vertical padding */
-            border-top: 1px solid #dee2e6; /* Light gray separator */
+            padding: 30px 0; /* Sedikit dikurangi */
+            border-top: 1px solid #eee;
         }
 
         .content-section.active {
@@ -122,193 +126,182 @@
         }
 
         h1 {
-            color: #343a40; /* Darker heading */
-            margin-bottom: 30px;
-            border-bottom: 3px solid #007bff; /* Primary blue, thicker line */
-            padding-bottom: 15px;
-            font-size: 2.5em; /* Larger main heading */
-            text-align: center; /* Center the main heading */
+            color: #343a40;
+            margin-bottom: 30px; /* Sedikit dikurangi */
+            border-bottom: 3px solid #00b8d4; /* Sedikit dikurangi */
+            padding-bottom: 15px; /* Sedikit dikurangi */
+            font-size: 2.5em; /* Sedikit dikurangi */
+            text-align: center;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
         }
 
         h2 {
-            color: #007bff; /* Primary blue */
-            margin-top: 25px;
-            margin-bottom: 18px;
-            border-bottom: 2px solid #e0e0e0; /* Light gray separator */
-            padding-bottom: 10px;
-            font-size: 1.8em;
+            color: #00b8d4;
+            margin-top: 25px; /* Sedikit dikurangi */
+            margin-bottom: 18px; /* Sedikit dikurangi */
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px; /* Sedikit dikurangi */
+            font-size: 1.8em; /* Sedikit dikurangi */
         }
 
         h3 {
-            color: #495057; /* Darker subheading */
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-            font-weight: bold; /* Make subheadings bolder */
+            color: #495057;
+            margin-top: 20px; /* Sedikit dikurangi */
+            margin-bottom: 10px; /* Sedikit dikurangi */
+            font-size: 1.2em; /* Sedikit dikurangi */
+            font-weight: bold;
         }
 
         p {
             color: #555;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Sedikit dikurangi */
+            line-height: 1.6;
+            font-size: 0.95em; /* Ukuran font sedikit lebih kecil */
         }
 
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 600px; /* Increased iframe height */
-            border: 1px solid #ced4da; /* Light gray border */
-            border-radius: 6px;
+            height: 600px; /* Sedikit dikurangi */
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Sedikit dikurangi */
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for iframe */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
         }
 
         .fullscreen-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0, 123, 255, 0.9); /* Primary blue, slightly transparent */
+            top: 12px; /* Sedikit disesuaikan */
+            right: 12px; /* Sedikit disesuaikan */
+            background-color: rgba(0, 184, 212, 0.9);
             color: #fff;
             border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 8px 12px; /* Sedikit dikurangi */
+            border-radius: 6px; /* Sedikit dikurangi */
             cursor: pointer;
             z-index: 10;
-            opacity: 0.8;
-            transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
+            opacity: 0.9;
+            transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.2s ease-in-out;
         }
 
         .fullscreen-button:hover {
             opacity: 1;
-            background-color: #0056b3;
-            transform: scale(1.1); /* Slight scale on hover */
+            background-color: #00acc1;
+            transform: scale(1.05); /* Sedikit dikurangi */
         }
 
         .help-button-container {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px; /* Sedikit disesuaikan */
+            right: 25px; /* Sedikit disesuaikan */
             z-index: 1000;
         }
 
         .help-button {
-            background-color: #28a745; /* Success green */
+            background-color: #27ae60;
             color: #fff;
             border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
+            padding: 10px 15px; /* Sedikit dikurangi */
+            border-radius: 6px; /* Sedikit dikurangi */
             cursor: pointer;
-            font-size: 1em;
+            font-size: 1em; /* Sedikit dikurangi */
             display: flex;
             align-items: center;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out; /* Added transform */
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
             text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sedikit disesuaikan */
         }
 
         .help-button i {
-            margin-right: 8px;
-            font-size: 1.1em;
+            margin-right: 8px; /* Sedikit dikurangi */
+            font-size: 1.1em; /* Sedikit dikurangi */
             color: #fff;
         }
 
         .help-button:hover {
-            background-color: #1e7e34;
-            transform: scale(1.05); /* Slight scale on hover */
+            background-color: #219653;
+            transform: scale(1.05); /* Sedikit dikurangi */
         }
 
         /* Improved Card Styling */
         .feature-item {
-            background-color: #fff; /* White background for cards */
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px; /* Rounded corners */
-            border-left: 8px solid #007bff; /* Accent color on the left */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
-            transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+            background-color: #fff;
+            padding: 20px; /* Sedikit dikurangi */
+            margin-bottom: 20px; /* Sedikit dikurangi */
+            border-radius: 8px; /* Sedikit dikurangi */
+            border-left: 8px solid #00b8d4; /* Sedikit dikurangi */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
+            transition: transform 0.3s ease-in-out;
         }
 
         .feature-item:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+            transform: translateY(-6px); /* Sedikit dikurangi */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sedikit disesuaikan */
         }
 
         .feature-item h3 {
-            color: #007bff;
+            color: #00b8d4;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Sedikit dikurangi */
+            font-size: 1.3em; /* Sedikit dikurangi */
         }
 
         .feature-item p {
-            color: #6c757d; /* Slightly lighter paragraph text */
+            color: #6c757d;
+            line-height: 1.6;
+            font-size: 0.95em; /* Ukuran font sedikit lebih kecil */
         }
 
         /* Responsive Design for Mobile (max-width: 768px) - Adjusted for better readability */
         @media (max-width: 768px) {
             body {
                 background-size: cover;
+                font-size: 0.9em; /* Ukuran font lebih kecil di mobile */
             }
 
             .admin-header {
-                flex-direction: column;
-                align-items: center;
-                padding: 15px;
-                position: static; /* Remove sticky on small screens */
+                padding: 12px; /* Lebih kecil */
             }
 
             .admin-title {
-                margin-bottom: 10px;
                 font-size: 1.8em;
             }
 
-            .admin-nav ul {
-                flex-direction: column;
-                width: 100%;
-                margin-top: 10px;
-            }
-
             .admin-nav ul li {
-                margin-left: 0;
-                margin-bottom: 8px;
-                width: 100%;
+                margin-bottom: 8px; /* Lebih kecil */
             }
 
             .admin-nav ul li a {
-                display: flex;
-                justify-content: center;
-                padding: 12px 15px;
-                font-size: 0.95em;
+                padding: 10px 12px; /* Lebih kecil */
+                font-size: 0.9em;
             }
 
             .admin-nav ul li a i {
-                margin-right: 8px;
+                margin-right: 6px; /* Lebih kecil */
+                font-size: 0.9em;
             }
 
             .logout-button {
-                width: 100%;
-                text-align: center;
-                padding: 12px 15px;
-                font-size: 0.95em;
+                padding: 10px 12px; /* Lebih kecil */
+                font-size: 0.9em;
             }
 
             .container {
-                padding: 20px;
-                margin: 15px auto;
-                border-radius: 0;
-                background-color: rgba(255, 255, 255, 0.95);
+                padding: 25px; /* Lebih kecil */
+                margin: 15px auto; /* Lebih kecil */
             }
 
             h1 {
                 font-size: 1.8em;
-                text-align: center;
-                margin-bottom: 20px;
-                padding-bottom: 10px;
+                margin-bottom: 20px; /* Lebih kecil */
+                padding-bottom: 10px; /* Lebih kecil */
             }
 
             h2 {
                 font-size: 1.4em;
-                margin-top: 20px;
-                margin-bottom: 12px;
-                padding-bottom: 8px;
+                margin-top: 20px; /* Lebih kecil */
+                margin-bottom: 12px; /* Lebih kecil */
+                padding-bottom: 8px; /* Lebih kecil */
             }
 
             h3 {
@@ -316,40 +309,40 @@
             }
 
             p {
-                font-size: 0.9em;
+                font-size: 0.85em; /* Lebih kecil di mobile */
+                margin-bottom: 12px; /* Lebih kecil */
             }
 
             .iframe-container {
-                height: 300px; /* Adjust iframe height for mobile */
+                height: 350px; /* Lebih kecil di mobile */
             }
 
             .fullscreen-button {
-                top: 8px;
-                right: 8px;
-                padding: 6px 10px;
+                top: 8px; /* Lebih kecil */
+                right: 8px; /* Lebih kecil */
+                padding: 6px 10px; /* Lebih kecil */
                 font-size: 0.8em;
             }
 
             .help-button-container {
-                bottom: 15px;
-                left: 15px;
-                right: auto;
+                bottom: 15px; /* Lebih kecil */
+                left: 15px; /* Lebih kecil */
             }
 
             .help-button {
                 font-size: 0.9em;
-                padding: 8px 10px;
+                padding: 8px 10px; /* Lebih kecil */
             }
 
             .help-button i {
-                margin-right: 5px;
+                margin-right: 5px; /* Lebih kecil */
                 font-size: 1em;
             }
 
             .feature-item {
-                padding: 15px;
-                margin-bottom: 15px;
-                border-left-width: 5px;
+                padding: 15px; /* Lebih kecil */
+                margin-bottom: 15px; /* Lebih kecil */
+                border-left-width: 6px; /* Lebih kecil */
             }
         }
     </style>
@@ -364,6 +357,7 @@
                 <li><a href="#" data-target="tracking_rt"><i class="fas fa-map-marker-alt"></i> Tracking RT</a></li>
                 <li><a href="#" data-target="plan_pengiriman"><i class="fas fa-truck"></i> Plan Pengiriman</a></li>
                 <li><a href="#" data-target="konfirmasi"><i class="fas fa-check-double"></i> Konfirmasi</a></li>
+                <li><a href="#" data-target="live_chat"><i class="fas fa-comments"></i> Live Chat</a></li>
                 <li><a href="index.html"><button class="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</button></a></li>
             </ul>
         </nav>
@@ -383,7 +377,7 @@
             </div>
 
             <div class="feature-item">
-                <h3><i class="fas fa-map-marker-alt"></i> Tracking RT</h3>
+                <h3><i class="fas fa-fa-map-marker-alt"></i> Tracking RT</h3>
                 <p>Perbarui dan pantau status <strong>Rencana Tugas (RT)</strong> taruna (AB, TD, atau Sewa) untuk memantau aktivitas dan ketersediaan.</p>
             </div>
 
@@ -395,6 +389,11 @@
             <div class="feature-item">
                 <h3><i class="fas fa-check-double"></i> Konfirmasi</h3>
                 <p>Pantau dan kelola <strong>Database Konfirmasi DO Project</strong> untuk memastikan kelancaran Delivery Order (DO) proyek-proyek taruna.</p>
+            </div>
+
+            <div class="feature-item">
+                <h3><i class="fas fa-comments"></i> Live Chat</h3>
+                <p>Gunakan fitur <strong>Live Chat</strong> untuk berinteraksi langsung dan mendapatkan bantuan secara real-time melalui integrasi dengan <a href="https://www.tawk.to/" target="_blank">Tawk.to</a>. Anda dapat mengakses dashboard chat di bagian menu atau membuka jendela chat baru.</p>
             </div>
 
             <p>Gunakan menu di bagian atas untuk menavigasi ke berbagai bagian portal.</p>
@@ -409,8 +408,8 @@
         </div>
 
         <div id="tracking_rt" class="content-section">
-            <h2>Database Tracking RT (Rencana Tugas)</h2>
-            <p>Isi dan pantau status Rencana Tugas taruna (AB, TD, atau Sewa) secara real-time.</p>
+            <h2>Database Tracking RT</h2>
+            <p>Isi dan pantau status RT (AB, TD, atau Sewa) secara real-time.</p>
             <div class="iframe-container">
                 <iframe id="iframe-tracking_rt" src="https://docs.google.com/spreadsheets/d/15Yrb3SmT7n7WSGdkn3VqMO3eJ78CrDnayULTh_4GQMQ/edit?gid=413365647#gid=413365647" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-tracking_rt')"><i class="fas fa-expand"></i></button>
@@ -433,6 +432,16 @@
                 <iframe id="iframe-konfirmasi" src="https://docs.google.com/spreadsheets/d/1w484eeoDZeRS-jbIdp8f0t2_qN2jSxgfPv_ilV6e8kQ/edit?usp=sharing" width="100%" height="100%" frameborder="0"></iframe>
                 <button class="fullscreen-button" onclick="toggleFullscreen('iframe-konfirmasi')"><i class="fas fa-expand"></i></button>
             </div>
+        </div>
+
+        <div id="live_chat" class="content-section">
+            <h2><i class="fas fa-comments"></i> Live Chat dengan Tawk.to</h2>
+            <p>Anda dapat berinteraksi langsung dengan pengunjung website melalui layanan Live Chat yang disediakan oleh <a href="https://www.tawk.to/" target="_blank">Tawk.to</a>.</p>
+            <div class="iframe-container">
+                <iframe id="iframe-livechat" src="https://dashboard.tawk.to/" width="100%" height="100%" frameborder="0"></iframe>
+                <button class="fullscreen-button" onclick="toggleFullscreen('iframe-livechat')"><i class="fas fa-expand"></i></button>
+            </div>
+            <p><a href="https://dashboard.tawk.to/" class="help-button" target="_blank"><i class="fas fa-external-link-alt"></i> Buka Dashboard Tawk.to di Tab Baru</a></p>
         </div>
     </div>
 
