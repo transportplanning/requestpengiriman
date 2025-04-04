@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jajaran PIC</title>
+    <title>Tracking RT</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,125 +12,72 @@
         /* Gaya Umum */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1A237E, #0D47A1);
             margin: 0;
             padding: 40px;
-            color: #FFFFFF;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            background: linear-gradient(135deg, #000000, #1a1a1a);
+            color: white;
+            text-align: center;
             box-sizing: border-box;
-            overflow-x: hidden; /* Mencegah scroll horizontal */
+            overflow-x: hidden;
         }
 
-        .interactive-title {
-            text-align: center;
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            padding: 18px 35px;
-            background-color: rgba(255, 215, 0, 0.15);
-            color: #FFD700;
-            border-radius: 12px;
-            box-shadow: 0 8px 18px rgba(255, 215, 0, 0.35);
-            border: 1px solid rgba(255, 215, 0, 0.35);
-            width: 90%;
-            max-width: 900px;
-            margin-top: 60px; /* Beri ruang di bawah navbar fixed */
-        }
-
-        .pic-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px; /* Reduced margin for top container */
-            width: 95%;
-            max-width: 1300px;
-        }
-
-        .bottom-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px; /* Margin for bottom container */
-            width: 95%;
-            max-width: 1300px;
-            border-top: 2px dashed rgba(255, 255, 255, 0.3); /* Separator */
-            padding-top: 30px;
-        }
-
-        .pic-item {
-            background-color: #FFFFFF;
-            padding: 25px;
+        /* Container utama */
+        .container {
+            width: 85%;
+            max-width: 1400px;
+            height: 90vh;
+            background: rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(15px);
             border-radius: 15px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
-            text-align: center;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s;
-            color: #37474F;
-            border: 1px solid #E0E0E0;
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+            box-shadow: 0px 6px 25px rgba(255, 215, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
         }
 
-        .pic-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background-color: #FFD700;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s ease-in-out;
+        /* Judul */
+        h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #FFD700;
+            text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
         }
 
-        .pic-item:hover {
-            transform: translateY(-7px);
-            box-shadow: 0px 8px 25px rgba(255, 215, 0, 0.55);
-        }
-
-        .pic-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .pic-image {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid #FFD700;
-            object-fit: cover;
-        }
-
-        .pic-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1A237E;
-            margin-bottom: 10px;
-        }
-
-        .home-button {
-            margin-top: 40px;
-            padding: 14px 28px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #1A237E;
-            background-color: #FFD700;
-            border: 2px solid #FFD700;
+        /* Styling iframe */
+        iframe {
+            width: 98%;
+            height: 80%;
+            border: 2px solid rgba(255, 215, 0, 0.5);
             border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Tombol Home */
+        .home-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0px 5px 12px rgba(255, 215, 0, 0.7);
-            transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0px 3px 10px rgba(255, 215, 0, 0.5);
+            transition: background 0.3s, transform 0.2s;
         }
 
         .home-button:hover {
-            background-color: #F0C808;
-            color: #121212;
-            border-color: #F0C808;
-            box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.9);
-            transform: scale(1.07);
+            background-color: #e6c300;
+            transform: scale(1.05);
         }
 
         /* Off-Canvas Navbar Styles */
@@ -248,11 +195,13 @@
         </ul>
     </div>
 
-    <div class="interactive-title">Jajaran PIC</div>
-
-    <div class="pic-container" id="top-pic-list"></div>
-
-    <div class="bottom-container" id="bottom-pic-list"></div>
+    <div class="container">
+        <h2>✨ Tracking RT ✨</h2>
+        <iframe src="https://lookerstudio.google.com/embed/reporting/42e5ffeb-4c7f-4862-b795-667372719b38/page/page_12345"
+            allowfullscreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+        </iframe>
+    </div>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
@@ -271,34 +220,6 @@
                 icon.classList.add('fa-chevron-right');
             }
         });
-
-        const picData = [
-            { name: "Pak Ilyas", image: "ilyas.png" },
-            { name: "Pak Irfan", image: "irfan.jpeg" },
-            { name: "Pak Budi", image: "budi.jpeg" },
-            { name: "Bu Yuni", image: "yuni.png" },
-            { name: "Pak Faisal", image: "faisal.jpeg" }
-        ];
-
-        function createPicCard(pic) {
-            return `
-                <div class="pic-item">
-                    <img src="${pic.image}" alt="${pic.name}" class="pic-image">
-                    <div class="pic-title">${pic.name}</div>
-                </div>
-            `;
-        }
-
-        const topPicListContainer = document.getElementById("top-pic-list");
-        const bottomPicListContainer = document.getElementById("bottom-pic-list");
-
-        // Ambil 2 data pertama untuk bagian atas
-        const topPics = picData.slice(0, 2);
-        topPicListContainer.innerHTML = topPics.map(createPicCard).join('');
-
-        // Ambil 3 data sisanya untuk bagian bawah
-        const bottomPics = picData.slice(2);
-        bottomPicListContainer.innerHTML = bottomPics.map(createPicCard).join('');
     </script>
 </body>
 </html>
