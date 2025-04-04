@@ -17,11 +17,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Ubah height menjadi min-height agar konten tidak terpotong */
+            min-height: 100vh;
             background: linear-gradient(135deg, #000000, #1a1a1a);
             color: white;
             text-align: center;
-            overflow-x: hidden; /* Mencegah scroll horizontal */
+            overflow: hidden; /* Ubah overflow-x menjadi overflow: hidden untuk kedua sumbu */
         }
 
         /* Container utama */
@@ -34,7 +34,7 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0px 6px 25px rgba(255, 215, 0, 0.5);
-            border: 2px solid rgba(255, 215, 0, 0.8);
+            border: 2px solid #2c3e50; /* Warna bingkai biru gelap */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -58,92 +58,8 @@
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
         }
-         /* Tombol Home */
-        .home-button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: black;
-            background-color: #FFD700;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0px 3px 10px rgba(255, 215, 0, 0.5);
-            transition: background 0.3s, transform 0.2s;
-        }
 
-        .home-button:hover {
-            background-color: #e6c300;
-            transform: scale(1.05);
-        }
-
-        /* Off-Canvas Navbar Styles (sama seperti halaman utama) */
-        .off-canvas-menu-wrapper {
-            position: fixed;
-            top: 0;
-            left: -300px; /* Sembunyikan di luar layar */
-            width: 300px;
-            height: 100%;
-            background-color: rgba(52, 73, 94, 0.95);
-            padding: 20px;
-            z-index: 1000;
-            transition: transform 0.3s ease-in-out;
-            overflow-y: auto; /* Agar bisa scroll jika menu panjang */
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .off-canvas-menu-wrapper.open {
-            transform: translateX(300px); /* Geser masuk */
-        }
-
-        .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .close-button:hover {
-            opacity: 0.8;
-        }
-
-        .off-canvas-nav-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 60px; /* Beri jarak dari tombol close */
-        }
-
-        .off-canvas-nav-item {
-            margin-bottom: 10px;
-        }
-
-        .off-canvas-nav-link {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 500;
-            padding: 12px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .off-canvas-nav-link i {
-            margin-right: 10px;
-            color: #3498db;
-        }
-
-        .off-canvas-nav-link:hover {
-            background-color: #3498db;
-            color: #fff;
-        }
-
+        /* Off-Canvas Navbar Styles (dengan animasi keren dan toggle) */
         .menu-toggle {
             position: fixed;
             top: 20px;
@@ -151,27 +67,86 @@
             background: none;
             border: none;
             color: #fff;
-            font-size: 28px;
+            font-size: 24px; /* Ukuran ikon lebih kecil */
             cursor: pointer;
-            z-index: 1001; /* Di atas menu */
-            transition: opacity 0.2s ease;
+            z-index: 1001;
+            transition: transform 0.3s ease-in-out, opacity 0.2s ease;
         }
 
         .menu-toggle:hover {
             opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            transition: transform 0.3s ease-in-out; /* Transisi untuk rotasi ikon */
+        }
+
+        .off-canvas-menu-wrapper {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Pastikan tetap di luar viewport */
+            width: 300px;
+            height: 100%;
+            background-color: rgba(52, 73, 94, 0.95);
+            padding: 20px;
+            z-index: 1000;
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .off-canvas-menu-wrapper.open {
+            transform: translateX(300px);
+        }
+
+        .off-canvas-menu-wrapper.open + .menu-toggle i {
+            transform: rotate(90deg); /* Putar panah saat menu terbuka */
+        }
+
+        .close-button {
+            display: none; /* Sembunyikan tombol close */
+        }
+
+        .off-canvas-nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px; /* Sedikit kurangi margin atas */
+        }
+
+        .off-canvas-nav-item {
+            margin-bottom: 15px; /* Sedikit tambah margin bawah */
+        }
+
+        .off-canvas-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            font-size: 19px; /* Sedikit perbesar ukuran font link */
+            font-weight: 500;
+            padding: 14px 20px; /* Sedikit perbesar padding link */
+            border-radius: 7px;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Tambah transisi transform pada link */
+        }
+
+        .off-canvas-nav-link i {
+            margin-right: 12px; /* Sedikit tambah margin ikon */
+            color: #3498db;
+        }
+
+        .off-canvas-nav-link:hover {
+            background-color: #3498db;
+            color: #fff;
+            transform: translateX(5px); /* Efek geser saat hover */
         }
     </style>
 </head>
 <body>
-    <button class="menu-toggle">
-        <i class="fa fa-bars"></i>
-    </button>
-
     <div class="off-canvas-menu-wrapper">
-        <button class="close-button">
-            <i class="fa fa-times"></i>
-        </button>
         <ul class="off-canvas-nav-list">
+            <li class="off-canvas-nav-item">
+                <a href="home.html" class="off-canvas-nav-link"><i class="fa fa-home"></i> Home</a>
+            </li>
             <li class="off-canvas-nav-item">
                 <a href="form.html" class="off-canvas-nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
             </li>
@@ -198,32 +173,33 @@
         </ul>
     </div>
 
+    <button class="menu-toggle">
+        <i class="fa fa-chevron-right"></i>
+    </button>
+
     <div class="container">
         <h2>✨ Feedback ✨</h2>
         <iframe src="https://lookerstudio.google.com/embed/reporting/65f1de2d-8145-4795-a7f3-33a2f59fb51d/page/page_12345"
                 allowfullscreen
                 sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
         </iframe>
-        <button class="home-button" onclick="window.location.href='home.html'">🏠 Home</button>
     </div>
 
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
-        const closeButton = document.querySelector('.close-button');
+        let isMenuOpen = false;
 
         menuToggle.addEventListener('click', () => {
-            offCanvasMenuWrapper.classList.add('open');
-        });
-
-        closeButton.addEventListener('click', () => {
-            offCanvasMenuWrapper.classList.remove('open');
-        });
-
-        // Tutup menu saat mengklik di luar menu (opsional)
-        document.addEventListener('click', (event) => {
-            if (!offCanvasMenuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
-                offCanvasMenuWrapper.classList.remove('open');
+            isMenuOpen = !isMenuOpen;
+            offCanvasMenuWrapper.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            if (isMenuOpen) {
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-left');
+            } else {
+                icon.classList.remove('fa-chevron-left');
+                icon.classList.add('fa-chevron-right');
             }
         });
     </script>
