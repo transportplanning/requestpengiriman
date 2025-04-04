@@ -30,7 +30,7 @@
             align-items: center;
             padding-top: 60px;
             padding-bottom: 60px;
-            overflow-x: hidden; /* Mencegah scroll horizontal */
+            overflow: hidden; /* Mencegah scroll horizontal dan vertikal saat menu terbuka */
         }
 
         .container {
@@ -115,7 +115,7 @@
             height: 100%;
             background-color: rgba(52, 73, 94, 0.95);
             padding: 20px;
-            z-index: 1000;
+            z-index: 999; /* Di bawah menu-toggle */
             transition: transform 0.3s ease-in-out;
             overflow-y: auto; /* Agar bisa scroll jika menu panjang */
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
@@ -126,25 +126,13 @@
         }
 
         .close-button {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
-        }
-
-        .close-button:hover {
-            opacity: 0.8;
+            display: none; /* Sembunyikan tombol close */
         }
 
         .off-canvas-nav-list {
             list-style: none;
             padding: 0;
-            margin-top: 60px; /* Beri jarak dari tombol close */
+            margin-top: 30px; /* Beri jarak dari tombol close (meskipun tidak terlihat) */
         }
 
         .off-canvas-nav-item {
@@ -181,12 +169,21 @@
             color: #fff;
             font-size: 28px;
             cursor: pointer;
-            z-index: 1001; /* Di atas menu */
-            transition: opacity 0.2s ease;
+            z-index: 1000; /* Di atas menu */
+            transition: transform 0.3s ease-in-out, opacity 0.2s ease;
         }
 
         .menu-toggle:hover {
             opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            transition: transform 0.3s ease-in-out; /* Transisi untuk rotasi ikon */
+        }
+
+        .off-canvas-menu-wrapper.open + .menu-toggle i {
+            transform: rotate(90deg); /* Putar panah saat menu terbuka (menjadi menghadap ke bawah atau kanan) */
         }
 
         .logout-container {
@@ -448,14 +445,8 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <button class="menu-toggle">
-        <i class="fa fa-bars"></i>
-    </button>
 
     <div class="off-canvas-menu-wrapper">
-        <button class="close-button">
-            <i class="fa fa-times"></i>
-        </button>
         <ul class="off-canvas-nav-list">
             <li class="off-canvas-nav-item">
                 <a href="form.html" class="off-canvas-nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
@@ -464,8 +455,7 @@
                 <a href="feedback.html" class="off-canvas-nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
             </li>
             <li class="off-canvas-nav-item">
-                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a>
-            </li>
+                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a></li>
             <li class="off-canvas-nav-item">
                 <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
                     <i class="fa fa-truck-moving"></i> Lacak Pengiriman
@@ -482,6 +472,10 @@
             </li>
         </ul>
     </div>
+
+    <button class="menu-toggle">
+        <i class="fa fa-chevron-right"></i>
+    </button>
 
     <div class="container">
         <header class="header">
@@ -601,21 +595,9 @@
     <script>
         const menuToggle = document.querySelector('.menu-toggle');
         const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
-        const closeButton = document.querySelector('.close-button');
 
         menuToggle.addEventListener('click', () => {
-            offCanvasMenuWrapper.classList.add('open');
-        });
-
-        closeButton.addEventListener('click', () => {
-            offCanvasMenuWrapper.classList.remove('open');
-        });
-
-        // Tutup menu saat mengklik di luar menu (opsional)
-        document.addEventListener('click', (event) => {
-            if (!offCanvasMenuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
-                offCanvasMenuWrapper.classList.remove('open');
-            }
+            offCanvasMenuWrapper.classList.toggle('open');
         });
 
         let slideIndex = 1;
