@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Gaya Umum */
         body {
@@ -13,10 +17,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Ubah height menjadi min-height agar konten tidak terpotong */
             background: linear-gradient(135deg, #000000, #1a1a1a);
             color: white;
             text-align: center;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
         }
 
         /* Container utama */
@@ -33,6 +38,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: 60px; /* Beri ruang di bawah navbar fixed */
         }
 
         /* Judul */
@@ -52,7 +58,7 @@
             border-radius: 10px;
             box-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
         }
-		 /* Tombol Home */
+         /* Tombol Home */
         .home-button {
             margin-top: 15px;
             padding: 10px 20px;
@@ -71,16 +77,155 @@
             background-color: #e6c300;
             transform: scale(1.05);
         }
+
+        /* Off-Canvas Navbar Styles (sama seperti halaman utama) */
+        .off-canvas-menu-wrapper {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Sembunyikan di luar layar */
+            width: 300px;
+            height: 100%;
+            background-color: rgba(52, 73, 94, 0.95);
+            padding: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto; /* Agar bisa scroll jika menu panjang */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .off-canvas-menu-wrapper.open {
+            transform: translateX(300px); /* Geser masuk */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .close-button:hover {
+            opacity: 0.8;
+        }
+
+        .off-canvas-nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 60px; /* Beri jarak dari tombol close */
+        }
+
+        .off-canvas-nav-item {
+            margin-bottom: 10px;
+        }
+
+        .off-canvas-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .off-canvas-nav-link i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .off-canvas-nav-link:hover {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1001; /* Di atas menu */
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
+    <button class="menu-toggle">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="off-canvas-menu-wrapper">
+        <button class="close-button">
+            <i class="fa fa-times"></i>
+        </button>
+        <ul class="off-canvas-nav-list">
+            <li class="off-canvas-nav-item">
+                <a href="form.html" class="off-canvas-nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="feedback.html" class="off-canvas-nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
+                    <i class="fa fa-truck-moving"></i> Lacak Pengiriman
+                </a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <h2>✨ Feedback ✨</h2>
-        <iframe src="https://lookerstudio.google.com/embed/reporting/65f1de2d-8145-4795-a7f3-33a2f59fb51d/page/page_12345" 
-            allowfullscreen 
-            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+        <iframe src="https://lookerstudio.google.com/embed/reporting/65f1de2d-8145-4795-a7f3-33a2f59fb51d/page/page_12345"
+                allowfullscreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
         </iframe>
-		 <button class="home-button" onclick="window.location.href='home.html'">🏠 Home</button>
+        <button class="home-button" onclick="window.location.href='home.html'">🏠 Home</button>
     </div>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+        const closeButton = document.querySelector('.close-button');
+
+        menuToggle.addEventListener('click', () => {
+            offCanvasMenuWrapper.classList.add('open');
+        });
+
+        closeButton.addEventListener('click', () => {
+            offCanvasMenuWrapper.classList.remove('open');
+        });
+
+        // Tutup menu saat mengklik di luar menu (opsional)
+        document.addEventListener('click', (event) => {
+            if (!offCanvasMenuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
+                offCanvasMenuWrapper.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
