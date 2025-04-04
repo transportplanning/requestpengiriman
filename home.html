@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.67">
     <title>Layanan Permintaan Pengiriman</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,22 +30,25 @@
             align-items: center;
             padding-top: 60px;
             padding-bottom: 60px;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
         }
 
         .container {
             width: 95%;
             max-width: 1200px;
+            position: relative; /* Untuk z-index konten di atas sidebar */
+            z-index: 1;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px; /* Kurangi margin bawah header */
+            margin-bottom: 30px;
         }
 
         .header-title {
             font-size: 52px;
             font-weight: 700;
-            color: #fff; /* Judul utama warna putih */
+            color: #fff;
             margin-bottom: 15px;
             position: relative;
             padding-bottom: 15px;
@@ -60,13 +63,13 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(to right, #3498db, #2980b9); /* Aksen biru profesional */
+            background: linear-gradient(to right, #3498db, #2980b9);
             border-radius: 2px;
         }
 
         .header-subtitle {
             font-size: 20px;
-            color: #bdc3c7; /* Subjudul warna abu-abu terang */
+            color: #bdc3c7;
             font-style: italic;
         }
 
@@ -75,7 +78,7 @@
             position: relative;
             overflow: hidden;
             width: 100%;
-            max-height: 400px; /* Sesuaikan tinggi maksimum slideshow */
+            max-height: 400px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
@@ -89,11 +92,10 @@
         .image-slide img {
             display: block;
             width: 100%;
-            height: 400px; /* Sesuaikan tinggi gambar */
-            object-fit: cover; /* Membuat gambar mengisi seluruh area tanpa terpotong (cropping mungkin terjadi) */
+            height: 400px;
+            object-fit: cover;
         }
 
-        /* Efek Fade Gambar */
         .image-fade {
             animation-name: image-fade;
             animation-duration: 1.5s;
@@ -104,73 +106,102 @@
             to {opacity: 1}
         }
 
-        .navbar {
-            background-color: rgba(52, 73, 94, 0.95); /* Latar belakang navbar lebih gelap */
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Shadow lebih kuat */
-            margin-bottom: 30px; /* Kurangi margin bawah navbar */
-            padding: 15px 30px; /* Sedikit kurangi padding vertikal */
-            width: 100%;
-            backdrop-filter: blur(10px);
-            border-top: 3px solid #3498db; /* Aksen biru profesional lebih tebal */
+        /* Off-Canvas Navbar Styles */
+        .off-canvas-menu-wrapper {
+            position: fixed;
+            top: 0;
+            left: -300px; /* Sembunyikan di luar layar */
+            width: 300px;
+            height: 100%;
+            background-color: rgba(52, 73, 94, 0.95);
+            padding: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto; /* Agar bisa scroll jika menu panjang */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
         }
 
-        .nav-list {
+        .off-canvas-menu-wrapper.open {
+            transform: translateX(300px); /* Geser masuk */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .close-button:hover {
+            opacity: 0.8;
+        }
+
+        .off-canvas-nav-list {
             list-style: none;
             padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            margin-top: 60px; /* Beri jarak dari tombol close */
         }
 
-        .nav-item {
-            margin: 0;
+        .off-canvas-nav-item {
+            margin-bottom: 10px;
         }
 
-        .nav-link {
+        .off-canvas-nav-link {
+            display: block;
             text-decoration: none;
-            color: #fff; /* Link warna putih */
-            font-size: 16px; /* Sedikit kurangi ukuran font link */
+            color: #fff;
+            font-size: 18px;
             font-weight: 500;
-            padding: 10px 18px; /* Sedikit kurangi padding link */
-            border-radius: 8px;
-            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out; /* Tambah transisi box-shadow */
-            display: flex;
-            align-items: center;
-            gap: 8px; /* Sedikit kurangi gap ikon dan teks */
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        .nav-link i {
-            font-size: 16px; /* Sedikit kurangi ukuran font ikon */
-            color: #3498db; /* Aksen warna pada ikon */
-            transition: color 0.3s ease-in-out;
+        .off-canvas-nav-link i {
+            margin-right: 10px;
+            color: #3498db;
         }
 
-        .nav-link:hover {
+        .off-canvas-nav-link:hover {
+            background-color: #3498db;
             color: #fff;
-            background: linear-gradient(to right, #3498db, #2980b9);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3); /* Efek shadow biru saat hover */
         }
 
-        .nav-link:hover i {
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
             color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 1001; /* Di atas menu */
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            opacity: 0.8;
         }
 
         .logout-container {
             width: 100%;
             display: flex;
-            justify-content: center; /* Tengahkan tombol */
-            margin-top: 20px; /* Beri jarak dari menu */
-            margin-bottom: 30px; /* Beri jarak dari konten berikutnya */
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
         }
 
         .logout-button {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: #e74c3c; /* Warna merah untuk tombol log out */
+            background-color: #e74c3c;
             color: #fff;
             padding: 10px 20px;
             border-radius: 8px;
@@ -191,46 +222,46 @@
         }
 
         .introduction {
-            background-color: rgba(52, 73, 94, 0.9); /* Latar belakang introduction lebih gelap */
+            background-color: rgba(52, 73, 94, 0.9);
             border-radius: 10px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            padding: 25px; /* Kurangi sedikit padding introduction */
-            margin-bottom: 30px; /* Kurangi margin bawah introduction */
+            padding: 25px;
+            margin-bottom: 30px;
             width: 100%;
             text-align: center;
             color: #fff;
-            border-left: 5px solid #3498db; /* Aksen biru profesional lebih tebal */
+            border-left: 5px solid #3498db;
             backdrop-filter: blur(10px);
         }
 
         .introduction h2 {
-            font-size: 26px; /* Sedikit kurangi ukuran font h2 introduction */
+            font-size: 26px;
             font-weight: 600;
             color: #fff;
-            margin-bottom: 15px; /* Kurangi margin bawah h2 introduction */
+            margin-bottom: 15px;
         }
 
         .introduction > p {
-            font-size: 15px; /* Sedikit kurangi ukuran font p introduction */
+            font-size: 15px;
             color: #bdc3c7;
-            line-height: 1.6; /* Sedikit rapatkan line height */
-            margin-bottom: 20px; /* Kurangi margin bawah p introduction */
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .introduction .slideshow-container {
-            max-width: 80%; /* Batasi lebar kontainer slideshow */
-            margin: 0 auto 25px; /* Tengahkan dan beri margin bawah */
+            max-width: 80%;
+            margin: 0 auto 25px;
             overflow: hidden;
         }
 
         .introduction .slideshow-container .slide {
-            padding: 20px; /* Kurangi padding slide */
+            padding: 20px;
             text-align: center;
         }
 
         .introduction .slideshow-container .slide h3 {
-            font-size: 20px; /* Kurangi ukuran font judul slide */
-            margin-bottom: 10px; /* Kurangi margin bawah judul */
+            font-size: 20px;
+            margin-bottom: 10px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -240,21 +271,20 @@
         }
 
         .introduction .slideshow-container .slide p {
-            font-size: 14px; /* Kurangi ukuran font deskripsi */
-            line-height: 1.5; /* Rapatkan line height deskripsi */
-            margin-bottom: 15px; /* Kurangi margin bawah deskripsi */
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
         }
 
-        /* Judul Bagian */
         .section-title {
-            font-size: 40px; /* Ukuran font disesuaikan */
+            font-size: 40px;
             font-weight: 700;
             color: #fff;
             margin-bottom: 15px;
             position: relative;
             padding-bottom: 15px;
             display: inline-block;
-            width: 100%; /* Agar garis bawah bisa di tengah */
+            width: 100%;
             text-align: center;
         }
 
@@ -264,36 +294,34 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px; /* Panjang garis bawah disesuaikan */
+            width: 60px;
             height: 4px;
             background: linear-gradient(to right, #3498db, #2980b9);
             border-radius: 2px;
         }
 
-        /* Bagian Pimpinan Transport Planner */
         .leaders-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Membuat card berjejer responsif */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 40px;
         }
 
-        /* Responsif untuk Leaders Container */
         @media (max-width: 768px) {
             .leaders-container {
-                grid-template-columns: 1fr; /* Satu kolom saja pada tampilan ponsel */
+                grid-template-columns: 1fr;
             }
         }
 
         .leader-card {
-            background-color: #34495e; /* Warna latar belakang card pimpinan */
+            background-color: #34495e;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 20px;
             text-align: center;
             color: #fff;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border-top: 3px solid #3498db; /* Aksen garis biru */
+            border-top: 3px solid #3498db;
         }
 
         .leader-card:hover {
@@ -302,7 +330,7 @@
         }
 
         .leader-card img {
-            width: 120px; /* Ukuran gambar pimpinan */
+            width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
@@ -324,7 +352,7 @@
 
         .leader-card .chat-me {
             display: inline-block;
-            background-color: #2ecc71; /* Warna hijau WhatsApp */
+            background-color: #2ecc71;
             color: #fff;
             padding: 10px 20px;
             border-radius: 5px;
@@ -339,29 +367,28 @@
         }
 
         .main-content {
-            background-color: #34495e; /* Latar belakang main content lebih gelap */
+            background-color: #34495e;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 30px; /* Sedikit kurangi padding main content */
-            margin-bottom: 30px; /* Kurangi margin bawah main content */
+            padding: 30px;
+            margin-bottom: 30px;
             width: 100%;
             text-align: center;
             color: #fff;
         }
 
         .main-content p {
-            display: none; /* Sembunyikan elemen p */
+            display: none;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
-            padding: 25px 0; /* Sedikit kurangi padding footer */
-            font-size: 14px; /* Sedikit kurangi ukuran font footer */
+            padding: 25px 0;
+            font-size: 14px;
             color: #bdc3c7;
             border-top: 1px solid #555;
             width: 100%;
-            background-color: #2c3e50; /* Latar belakang footer sama dengan body */
+            background-color: #2c3e50;
         }
 
         .footer a {
@@ -378,73 +405,13 @@
         .whatsapp-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px; /* Sedikit kurangi gap ikon dan teks whatsapp link */
-            color: #2ecc71; /* Warna hijau WhatsApp lebih cerah */
+            gap: 8px;
+            color: #2ecc71;
             font-weight: 500;
         }
 
         .whatsapp-icon {
-            font-size: 16px; /* Sedikit kurangi ukuran font ikon whatsapp */
-        }
-
-        /* Responsif untuk Navbar */
-        @media (max-width: 768px) {
-            .header-title {
-                font-size: 40px;
-            }
-
-            .header-subtitle {
-                font-size: 18px;
-            }
-
-            .image-slideshow-container {
-                max-height: 300px;
-            }
-
-            .image-slide img {
-                height: 300px;
-            }
-
-            .navbar {
-                padding: 10px 15px;
-                border-top: 3px solid #3498db;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            .nav-list {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .nav-item {
-                margin: 10px 0;
-            }
-
-            .nav-link {
-                display: block;
-                text-align:text-align: center;
-                font-size: 15px;
-                padding: 8px 15px;
-            }
-
-            .nav-link i {
-                color: #3498db;
-                font-size: 15px;
-            }
-
-            .logout-container {
-                margin-top: 15px;
-                margin-bottom: 25px;
-            }
-
-            .logout-button {
-                font-size: 15px;
-                padding: 8px 15px;
-            }
-
-            .logout-button i {
-                font-size: 15px;
-            }
+            font-size: 16px;
         }
 
         .slide-controls {
@@ -469,18 +436,42 @@
         }
     </style>
 </head>
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/67e22f64b893c9190ff4a578/1in5oi91b';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
 <body>
+    <button class="menu-toggle">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="off-canvas-menu-wrapper">
+        <button class="close-button">
+            <i class="fa fa-times"></i>
+        </button>
+        <ul class="off-canvas-nav-list">
+            <li class="off-canvas-nav-item">
+                <a href="form.html" class="off-canvas-nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="feedback.html" class="off-canvas-nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
+                    <i class="fa fa-truck-moving"></i> Lacak Pengiriman
+                </a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <header class="header">
             <h1 class="header-title">Layanan Permintaan Pengiriman</h1>
@@ -493,37 +484,8 @@ s0.parentNode.insertBefore(s1,s0);
             </div>
         </div>
 
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="form.html" class="nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
-                </li>
-                <li class="nav-item">
-                    <a href="feedback.html" class="nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
-                </li>
-                <li class="nav-item">
-                    <a href="trackingrt.html" class="nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="nav-link">
-                        <i class="fa fa-truck-moving"></i> Lacak Pengiriman
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
-                </li>
-                <li class="nav-item">
-                    <a href="pic.html" class="nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
-                </li>
-                <li class="nav-item">
-                    <a href="qna.html" class="nav-link"><i class="fa fa-question-circle"></i> FAQ</a>
-                </li>
-            </ul>
-        </nav>
-
         <div class="logout-container">
-            <a href="index.html" class="button logout-button"><i class="fa fa-sign-out-alt"></i> Log Out</a>
-        </div>
+            </div>
 
         <div class="introduction">
             <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
@@ -559,11 +521,6 @@ s0.parentNode.insertBefore(s1,s0);
                     <h3><i class="fa fa-user-tie"></i> Jajaran (PIC)</h3>
                     <p>Anda dapat melihat daftar PIC yang bertanggung jawab atas berbagai layanan pengiriman. </p>
                 </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-question-circle"></i> Frequently Asked Questions (FAQ)</h3>
-                    <p>Temukan jawaban atas pertanyaan umum terkait layanan pengiriman kami. Bagian FAQ menyediakan informasi cepat dan berguna untuk berbagai topik.</p>
-                </div>
                 <div class="slide fade">
                     <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
                     <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
@@ -572,11 +529,12 @@ s0.parentNode.insertBefore(s1,s0);
 
             <div class="dot-container">
                 <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
                 <span class="dot" onclick="currentSlide(5)"></span>
                 <span class="dot" onclick="currentSlide(6)"></span>
                 <span class="dot" onclick="currentSlide(7)"></span>
-                <span class="dot" onclick="currentSlide(8)"></span>
             </div>
 
             <div class="slide-controls">
@@ -630,8 +588,27 @@ s0.parentNode.insertBefore(s1,s0);
     </div>
 
     <script>
-        let slideIndex = 1; // Inisialisasi slideIndex menjadi 1
-        showSlides(slideIndex); // Tampilkan slide pertama saat halaman dimuat
+        const menuToggle = document.querySelector('.menu-toggle');
+        const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+        const closeButton = document.querySelector('.close-button');
+
+        menuToggle.addEventListener('click', () => {
+            offCanvasMenuWrapper.classList.add('open');
+        });
+
+        closeButton.addEventListener('click', () => {
+            offCanvasMenuWrapper.classList.remove('open');
+        });
+
+        // Tutup menu saat mengklik di luar menu (opsional)
+        document.addEventListener('click', (event) => {
+            if (!offCanvasMenuWrapper.contains(event.target) && !menuToggle.contains(event.target)) {
+                offCanvasMenuWrapper.classList.remove('open');
+            }
+        });
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
         function plusSlides(n) {
             showSlides(slideIndex += n);
@@ -658,7 +635,7 @@ s0.parentNode.insertBefore(s1,s0);
         }
 
         let imageSlideIndex = 0;
-        showImageSlides(5000); // Tetap biarkan slideshow gambar auto geser
+        showImageSlides(5000);
 
         function showImageSlides(interval) {
             let i;
@@ -671,7 +648,7 @@ s0.parentNode.insertBefore(s1,s0);
             slides[imageSlideIndex-1].style.display = "block";
             setTimeout(function(){ showImageSlides(interval); }, interval);
         }
-        showImageSlides(5000); // Jalankan slideshow gambar saat halaman dimuat
+        showImageSlides(5000);
     </script>
 </body>
 </html>
