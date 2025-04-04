@@ -6,40 +6,36 @@
     <title>Portal Admin - Pemantauan Database Taruna</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        background-image: linear-gradient(135deg, rgba(0, 173, 181, 0.05) 25%, transparent 25%,
-                                    transparent 50%, rgba(0, 173, 181, 0.05) 50%, rgba(0, 173, 181, 0.05) 75%,
-                                    transparent 75%, transparent);
-        background-size: 40px 40px;
-        background-position: center;
-        background-repeat: repeat;
-        color: #343a40;
-        line-height: 1.6;
-        overflow-x: hidden;
-        background-attachment: fixed;
-        font-size: 0.95em;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            /* Latar belakang tema gelap */
+            background-color: #2c3e50; /* Warna latar belakang gelap */
+            color: #f8f9fa;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-attachment: fixed;
+            font-size: 0.95em;
+        }
 
         .admin-header {
-            background-color: rgba(52, 58, 64, 0.9);
+            background-color: rgba(52, 58, 64, 0.95);
             color: #f8f9fa;
-            padding: 18px; /* Sedikit dikurangi */
+            padding: 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sedikit disesuaikan */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
         .admin-title {
-            font-size: 2em; /* Sedikit dikurangi */
+            font-size: 2em;
             font-weight: bold;
             color: #00b8d4;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .admin-nav ul {
@@ -50,7 +46,7 @@
         }
 
         .admin-nav ul li {
-            margin-left: 20px; /* Sedikit dikurangi */
+            margin-left: 20px;
         }
 
         .admin-nav ul li:first-child {
@@ -62,32 +58,32 @@
             align-items: center;
             color: #f8f9fa;
             text-decoration: none;
-            padding: 10px 15px; /* Sedikit dikurangi */
-            border-radius: 6px; /* Sedikit dikurangi */
+            padding: 10px 15px;
+            border-radius: 6px;
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out;
         }
 
         .admin-nav ul li a i {
-            margin-right: 8px; /* Sedikit dikurangi */
-            font-size: 1em; /* Sedikit dikurangi */
+            margin-right: 8px;
+            font-size: 1em;
             color: #2ecc71;
         }
 
         .admin-nav ul li a:hover {
             background-color: rgba(0, 184, 212, 0.8);
             color: #fff;
-            transform: scale(1.05); /* Sedikit dikurangi */
+            transform: scale(1.04);
         }
 
         .logout-button {
             background: none;
             border: 2px solid #e74c3c;
             color: #e74c3c;
-            font-size: 1em; /* Sedikit dikurangi */
+            font-size: 1em;
             cursor: pointer;
             transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease-in-out;
-            padding: 10px 15px; /* Sedikit dikurangi */
-            border-radius: 6px; /* Sedikit dikurangi */
+            padding: 10px 15px;
+            border-radius: 6px;
             font-weight: bold;
         }
 
@@ -95,18 +91,20 @@
             color: #fff;
             background-color: #e74c3c;
             border-color: #e74c3c;
-            transform: scale(1.05); /* Sedikit dikurangi */
+            transform: scale(1.04);
         }
 
         .container {
-            padding: 40px; /* Sedikit dikurangi */
-            margin: 30px auto; /* Sedikit dikurangi */
-            max-width: 1100px; /* Sedikit dikurangi */
-            background-color: rgba(255, 255, 255, 0.92);
-            border-radius: 8px; /* Sedikit dikurangi */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
+            padding: 40px;
+            margin: 30px auto;
+            max-width: 1100px;
+            background-color: rgba(255, 255, 255, 0.08); /* Transparansi untuk container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             position: relative;
             animation: fadeIn 0.5s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @keyframes fadeIn {
@@ -116,8 +114,8 @@
 
         .content-section {
             display: none;
-            padding: 30px 0; /* Sedikit dikurangi */
-            border-top: 1px solid #eee;
+            padding: 30px 0;
+            border-top: 1px solid #4a6572; /* Garis lebih gelap */
         }
 
         .content-section.active {
@@ -126,58 +124,59 @@
         }
 
         h1 {
-            color: #343a40;
-            margin-bottom: 30px; /* Sedikit dikurangi */
-            border-bottom: 3px solid #00b8d4; /* Sedikit dikurangi */
-            padding-bottom: 15px; /* Sedikit dikurangi */
-            font-size: 2.5em; /* Sedikit dikurangi */
+            color: #fff;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #00b8d4;
+            padding-bottom: 15px;
+            font-size: 2.5em;
             text-align: center;
-            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
         }
 
         h2 {
             color: #00b8d4;
-            margin-top: 25px; /* Sedikit dikurangi */
-            margin-bottom: 18px; /* Sedikit dikurangi */
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px; /* Sedikit dikurangi */
-            font-size: 1.8em; /* Sedikit dikurangi */
+            margin-top: 25px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #6b8e23; /* Garis lebih gelap */
+            padding-bottom: 10px;
+            font-size: 1.8em;
         }
 
         h3 {
-            color: #495057;
-            margin-top: 20px; /* Sedikit dikurangi */
-            margin-bottom: 10px; /* Sedikit dikurangi */
-            font-size: 1.2em; /* Sedikit dikurangi */
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
             font-weight: bold;
         }
 
         p {
-            color: #555;
-            margin-bottom: 15px; /* Sedikit dikurangi */
+            color: #eee;
+            margin-bottom: 15px;
             line-height: 1.6;
-            font-size: 0.95em; /* Ukuran font sedikit lebih kecil */
+            font-size: 0.95em;
         }
 
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 600px; /* Sedikit dikurangi */
-            border: 1px solid #ccc;
-            border-radius: 6px; /* Sedikit dikurangi */
+            height: 600px;
+            border: 1px solid #666;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
         }
 
         .fullscreen-button {
             position: absolute;
-            top: 12px; /* Sedikit disesuaikan */
-            right: 12px; /* Sedikit disesuaikan */
+            top: 12px;
+            right: 12px;
             background-color: rgba(0, 184, 212, 0.9);
             color: #fff;
             border: none;
-            padding: 8px 12px; /* Sedikit dikurangi */
-            border-radius: 6px; /* Sedikit dikurangi */
+            padding: 8px 12px;
+            border-radius: 6px;
             cursor: pointer;
             z-index: 10;
             opacity: 0.9;
@@ -187,13 +186,13 @@
         .fullscreen-button:hover {
             opacity: 1;
             background-color: #00acc1;
-            transform: scale(1.05); /* Sedikit dikurangi */
+            transform: scale(1.04);
         }
 
         .help-button-container {
             position: fixed;
-            bottom: 25px; /* Sedikit disesuaikan */
-            right: 25px; /* Sedikit disesuaikan */
+            bottom: 25px;
+            right: 25px;
             z-index: 1000;
         }
 
@@ -201,66 +200,69 @@
             background-color: #27ae60;
             color: #fff;
             border: none;
-            padding: 10px 15px; /* Sedikit dikurangi */
-            border-radius: 6px; /* Sedikit dikurangi */
+            padding: 10px 15px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1em; /* Sedikit dikurangi */
+            font-size: 1em;
             display: flex;
             align-items: center;
             transition: background-color 0.3s ease, transform 0.2s ease-in-out;
             text-decoration: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sedikit disesuaikan */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
         }
 
         .help-button i {
-            margin-right: 8px; /* Sedikit dikurangi */
-            font-size: 1.1em; /* Sedikit dikurangi */
+            margin-right: 8px;
+            font-size: 1.1em;
             color: #fff;
         }
 
         .help-button:hover {
             background-color: #219653;
-            transform: scale(1.05); /* Sedikit dikurangi */
+            transform: scale(1.04);
         }
 
         /* Improved Card Styling */
         .feature-item {
-            background-color: #fff;
-            padding: 20px; /* Sedikit dikurangi */
-            margin-bottom: 20px; /* Sedikit dikurangi */
-            border-radius: 8px; /* Sedikit dikurangi */
-            border-left: 8px solid #00b8d4; /* Sedikit dikurangi */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sedikit disesuaikan */
-            transition: transform 0.3s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.06); /* Transparan */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 8px solid #00b8d4;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow lebih halus */
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .feature-item:hover {
-            transform: translateY(-6px); /* Sedikit dikurangi */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sedikit disesuaikan */
+            transform: translateY(-4px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .feature-item h3 {
             color: #00b8d4;
             margin-top: 0;
-            margin-bottom: 10px; /* Sedikit dikurangi */
-            font-size: 1.3em; /* Sedikit dikurangi */
+            margin-bottom: 10px;
+            font-size: 1.3em;
         }
 
         .feature-item p {
-            color: #6c757d;
+            color: #eee;
             line-height: 1.6;
-            font-size: 0.95em; /* Ukuran font sedikit lebih kecil */
+            font-size: 0.95em;
         }
 
-        /* Responsive Design for Mobile (max-width: 768px) - Adjusted for better readability */
+        /* Responsive Design for Mobile (max-width: 768px) */
         @media (max-width: 768px) {
             body {
                 background-size: cover;
-                font-size: 0.9em; /* Ukuran font lebih kecil di mobile */
+                font-size: 0.9em;
             }
 
             .admin-header {
-                padding: 12px; /* Lebih kecil */
+                padding: 12px;
             }
 
             .admin-title {
@@ -268,40 +270,40 @@
             }
 
             .admin-nav ul li {
-                margin-bottom: 8px; /* Lebih kecil */
+                margin-bottom: 8px;
             }
 
             .admin-nav ul li a {
-                padding: 10px 12px; /* Lebih kecil */
+                padding: 10px 12px;
                 font-size: 0.9em;
             }
 
             .admin-nav ul li a i {
-                margin-right: 6px; /* Lebih kecil */
+                margin-right: 6px;
                 font-size: 0.9em;
             }
 
             .logout-button {
-                padding: 10px 12px; /* Lebih kecil */
+                padding: 10px 12px;
                 font-size: 0.9em;
             }
 
             .container {
-                padding: 25px; /* Lebih kecil */
-                margin: 15px auto; /* Lebih kecil */
+                padding: 25px;
+                margin: 15px auto;
             }
 
             h1 {
                 font-size: 1.8em;
-                margin-bottom: 20px; /* Lebih kecil */
-                padding-bottom: 10px; /* Lebih kecil */
+                margin-bottom: 20px;
+                padding-bottom: 10px;
             }
 
             h2 {
                 font-size: 1.4em;
-                margin-top: 20px; /* Lebih kecil */
-                margin-bottom: 12px; /* Lebih kecil */
-                padding-bottom: 8px; /* Lebih kecil */
+                margin-top: 20px;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
             }
 
             h3 {
@@ -309,40 +311,40 @@
             }
 
             p {
-                font-size: 0.85em; /* Lebih kecil di mobile */
-                margin-bottom: 12px; /* Lebih kecil */
+                font-size: 0.85em;
+                margin-bottom: 12px;
             }
 
             .iframe-container {
-                height: 350px; /* Lebih kecil di mobile */
+                height: 350px;
             }
 
             .fullscreen-button {
-                top: 8px; /* Lebih kecil */
-                right: 8px; /* Lebih kecil */
-                padding: 6px 10px; /* Lebih kecil */
+                top: 8px;
+                right: 8px;
+                padding: 6px 10px;
                 font-size: 0.8em;
             }
 
             .help-button-container {
-                bottom: 15px; /* Lebih kecil */
-                left: 15px; /* Lebih kecil */
+                bottom: 15px;
+                left: 15px;
             }
 
             .help-button {
                 font-size: 0.9em;
-                padding: 8px 10px; /* Lebih kecil */
+                padding: 8px 10px;
             }
 
             .help-button i {
-                margin-right: 5px; /* Lebih kecil */
+                margin-right: 5px;
                 font-size: 1em;
             }
 
             .feature-item {
-                padding: 15px; /* Lebih kecil */
-                margin-bottom: 15px; /* Lebih kecil */
-                border-left-width: 6px; /* Lebih kecil */
+                padding: 15px;
+                margin-bottom: 15px;
+                border-left-width: 6px;
             }
         }
     </style>
