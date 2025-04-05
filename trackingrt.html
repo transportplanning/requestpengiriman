@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Dashboard - Looker Studio</title>
+    <title>Tracking RT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         /* Gaya Umum */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 40px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, #000000, #1a1a1a);
             color: white;
             text-align: center;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         /* Container utama */
@@ -33,6 +39,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-top: 60px;
         }
 
         /* Judul */
@@ -72,16 +79,147 @@
             background-color: #e6c300;
             transform: scale(1.05);
         }
+
+        /* Off-Canvas Navbar Styles */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease-in-out, opacity 0.2s ease;
+        }
+
+        .menu-toggle:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .menu-toggle i {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .off-canvas-menu-wrapper {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: rgba(52, 73, 94, 0.95);
+            padding: 20px;
+            z-index: 1000;
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .off-canvas-menu-wrapper.open {
+            transform: translateX(300px);
+        }
+
+        .close-button {
+            display: none;
+        }
+
+        .off-canvas-nav-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .off-canvas-nav-item {
+            margin-bottom: 15px;
+        }
+
+        .off-canvas-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            font-size: 19px;
+            font-weight: 500;
+            padding: 14px 20px;
+            border-radius: 7px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .off-canvas-nav-link i {
+            margin-right: 12px;
+            color: #3498db;
+        }
+
+        .off-canvas-nav-link:hover {
+            background-color: #3498db;
+            color: #fff;
+            transform: translateX(5px);
+        }
+
     </style>
 </head>
 <body>
+    <button class="menu-toggle">
+        <i class="fa fa-chevron-right"></i>
+    </button>
+
+    <div class="off-canvas-menu-wrapper">
+        <ul class="off-canvas-nav-list">
+            <li class="off-canvas-nav-item">
+                <a href="home.html" class="off-canvas-nav-link"><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="form.html" class="off-canvas-nav-link"><i class="fa fa-file-alt"></i> Form Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="feedback.html" class="off-canvas-nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
+                    <i class="fa fa-truck-moving"></i> Lacak Pengiriman
+                </a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
+            </li>
+            <li class="off-canvas-nav-item">
+                <a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <h2>✨ Tracking RT ✨</h2>
-        <iframe src="https://lookerstudio.google.com/embed/reporting/42e5ffeb-4c7f-4862-b795-667372719b38/page/page_12345" 
-            allowfullscreen 
+        <iframe src="https://lookerstudio.google.com/embed/reporting/42e5ffeb-4c7f-4862-b795-667372719b38/page/page_12345"
+            allowfullscreen
             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
         </iframe>
-        <button class="home-button" onclick="window.location.href='home.html'">🏠 Home</button>
     </div>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            offCanvasMenuWrapper.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            if (isMenuOpen) {
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-left');
+            } else {
+                icon.classList.remove('fa-chevron-left');
+                icon.classList.add('fa-chevron-right');
+            }
+        });
+    </script>
 </body>
 </html>
