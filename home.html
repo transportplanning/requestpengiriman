@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.67">
-    <title>Layanan Permintaan Pengiriman</title>
+    <title>Delivery Request Service</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Reset CSS untuk konsistensi */
-        body, h1, h2, p, ul, li, a, button, img, i, div {
+        body, h1, h2, p, ul, li, a, button, img, i, div, span {
             margin: 0;
             padding: 0;
             border: 0;
@@ -22,23 +22,20 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #2c3e50; /* Biru gelap sebagai latar belakang */
-            color: #ecf0f1; /* Teks utama warna lebih terang */
+            background-color: #0A2463; /* Versi lebih gelap dari #003092 */
+            color: #FFF2DB;
             min-height: 100vh;
-            /* display: flex;
-            flex-direction: column;
-            align-items: center; */ /* Hapus flexbox pada body agar bisa scroll */
             padding-top: 60px;
             padding-bottom: 60px;
-            /* overflow: hidden; */ /* Hapus overflow: hidden agar bisa scroll */
+            scroll-behavior: smooth;
         }
 
         .container {
             width: 95%;
             max-width: 1200px;
-            position: relative; /* Untuk z-index konten di atas sidebar */
+            position: relative;
             z-index: 1;
-            margin: 0 auto; /* Tambahkan margin auto agar container berada di tengah */
+            margin: 0 auto;
         }
 
         .header {
@@ -47,31 +44,34 @@
         }
 
         .header-title {
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 15px;
+            color: #FFF2DB;
+            margin-bottom: 5px; /* Kurangi margin bawah */
             position: relative;
-            padding-bottom: 15px;
             display: inline-block;
+            line-height: 1.3;
         }
 
-        .header-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, #3498db, #2980b9);
-            border-radius: 2px;
-        }
-
-        .header-subtitle {
-            font-size: 20px;
-            color: #bdc3c7;
+        .header-motto {
+            font-size: 26px; /* Ukuran font motto lebih kecil */
+            color: #DCD7C9;
             font-style: italic;
+            margin-bottom: 15px; /* Tambahkan margin bawah untuk garis */
+        }
+
+        .header-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #006B7A, #E08E41);
+            margin: 10px auto 15px; /* Tambahkan margin atas dan bawah */
+            border-radius: 1px;
+        }
+
+        .header-greeting {
+            font-size: 18px;
+            color: #FFF2DB;
+            opacity: 0.9;
         }
 
         /* Slideshow Gambar */
@@ -95,6 +95,7 @@
             width: 100%;
             height: 400px;
             object-fit: cover;
+            border-radius: 8px;
         }
 
         .image-fade {
@@ -107,33 +108,153 @@
             to {opacity: 1}
         }
 
+        /* Area Pengumuman */
+        .announcement-area {
+            background-color: #FFF2DB;
+            color: #006B7A;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #FFAB5B;
+        }
+
+        .announcement-text {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .announcement-text i {
+            margin-right: 8px;
+            color: #E08E41;
+        }
+
+        .announcement-text a.show-announcement-details {
+            color: #003092;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .announcement-text a.show-announcement-details:hover {
+            color: #00879E;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .modal.show {
+            display: block;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #FFF2DB;
+            color: #003092;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 0.3s ease-out 0.1s, opacity 0.3s ease-out 0.1s;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .close-button {
+            color: #003092;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #00879E;
+            text-decoration: none;
+            opacity: 1;
+        }
+
+        .modal-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #00879E;
+            border-bottom: 2px solid #FFAB5B;
+            padding-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #003092;
+        }
+
+        .modal-content ul {
+            padding-left: 25px;
+            margin-bottom: 15px;
+            list-style-type: disc;
+        }
+
+        .modal-content li {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #003092;
+            margin-bottom: 8px;
+        }
+
         /* Off-Canvas Navbar Styles */
         .off-canvas-menu-wrapper {
             position: fixed;
             top: 0;
-            left: -300px; /* Sembunyikan di luar layar */
+            left: -300px;
             width: 300px;
             height: 100%;
-            background-color: rgba(52, 73, 94, 0.95);
+            background-color: rgba(0, 48, 146, 0.9);
             padding: 20px;
-            z-index: 999; /* Di bawah menu-toggle */
+            z-index: 999;
             transition: transform 0.3s ease-in-out;
-            overflow-y: auto; /* Agar bisa scroll jika menu panjang */
+            overflow-y: auto;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .off-canvas-menu-wrapper.open {
-            transform: translateX(300px); /* Geser masuk */
+            transform: translateX(300px);
         }
 
         .close-button {
-            display: none; /* Sembunyikan tombol close */
+            display: none;
         }
 
         .off-canvas-nav-list {
             list-style: none;
             padding: 0;
-            margin-top: 30px; /* Beri jarak dari tombol close (meskipun tidak terlihat) */
+            margin-top: 30px;
         }
 
         .off-canvas-nav-item {
@@ -143,7 +264,7 @@
         .off-canvas-nav-link {
             display: block;
             text-decoration: none;
-            color: #fff;
+            color: #FFF2DB;
             font-size: 18px;
             font-weight: 500;
             padding: 12px 15px;
@@ -153,12 +274,12 @@
 
         .off-canvas-nav-link i {
             margin-right: 10px;
-            color: #3498db;
+            color: #FFAB5B;
         }
 
         .off-canvas-nav-link:hover {
-            background-color: #3498db;
-            color: #fff;
+            background-color: #00879E;
+            color: #FFF2DB;
         }
 
         .menu-toggle {
@@ -167,10 +288,10 @@
             left: 20px;
             background: none;
             border: none;
-            color: #fff;
+            color: #FFF2DB;
             font-size: 28px;
             cursor: pointer;
-            z-index: 1000; /* Di atas menu */
+            z-index: 1000;
             transition: transform 0.3s ease-in-out, opacity 0.2s ease;
         }
 
@@ -180,11 +301,11 @@
         }
 
         .menu-toggle i {
-            transition: transform 0.3s ease-in-out; /* Transisi untuk rotasi ikon */
+            transition: transform0.3s ease-in-out;
         }
 
         .off-canvas-menu-wrapper.open + .menu-toggle i {
-            transform: rotate(90deg); /* Putar panah saat menu terbuka (menjadi menghadap ke bawah atau kanan) */
+            transform: rotate(90deg);
         }
 
         .logout-container {
@@ -199,8 +320,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: #e74c3c;
-            color: #fff;
+            background-color: #003092;
+            color: #FFF2DB;
             padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
@@ -210,9 +331,9 @@
         }
 
         .logout-button:hover {
-            background-color: #c0392b;
+            background-color: #00879E;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(192, 57, 43, 0.4);
+            box-shadow: 0 4px 8px rgba(0, 135, 158, 0.4);
         }
 
         .logout-button i {
@@ -220,64 +341,45 @@
         }
 
         .introduction {
-            background-color: rgba(52, 73, 94, 0.9);
+            background-color: rgba(0, 48, 146, 0.8);
             border-radius: 10px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             padding: 25px;
             margin-bottom: 30px;
             width: 100%;
             text-align: center;
-            color: #fff;
-            border-left: 5px solid #3498db;
+            color: #FFF2DB;
+            border-left: 5px solid #E08E41;
             backdrop-filter: blur(10px);
         }
 
         .introduction h2 {
             font-size: 26px;
             font-weight: 600;
-            color: #fff;
+            color: #FFF2DB;
             margin-bottom: 15px;
         }
 
         .introduction > p {
             font-size: 15px;
-            color: #bdc3c7;
+            color: #DCD7C9;
+            opacity: 0.8;
             line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .introduction .slideshow-container {
-            max-width: 80%;
-            margin: 0 auto 25px;
-            overflow: hidden;
-        }
-
-        .introduction .slideshow-container .slide {
-            padding: 20px;
-            text-align: center;
-        }
-
         .introduction .slideshow-container .slide h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
+            color: #FFF2DB;
         }
 
         .introduction .slideshow-container .slide p {
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 15px;
+            color: #DCD7C9;
         }
 
         .section-title {
             font-size: 40px;
             font-weight: 700;
-            color: #fff;
+            color: #FFF2DB;
             margin-bottom: 15px;
             position: relative;
             padding-bottom: 15px;
@@ -294,15 +396,16 @@
             transform: translateX(-50%);
             width: 60px;
             height: 4px;
-            background: linear-gradient(to right, #3498db, #2980b9);
+            background: linear-gradient(to right, #006B7A, #E08E41);
             border-radius: 2px;
         }
 
         .leaders-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 40px;
+            width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -312,14 +415,15 @@
         }
 
         .leader-card {
-            background-color: #34495e;
+            background-color: #003092;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            color: #fff;
+            color: #FFF2DB;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border-top: 3px solid #3498db;
+            border-top: 3px solid #FFAB5B;
+            overflow: hidden;
         }
 
         .leader-card:hover {
@@ -328,51 +432,59 @@
         }
 
         .leader-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 100%;
+            max-width: 150px;
+            height: auto;
             object-fit: cover;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .leader-card h3 {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .leader-card p {
-            font-size: 15px;
-            color: #bdc3c7;
-            margin-bottom: 15px;
+            font-size: 14px;
+            color: #DCD7C9;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .leader-card .chat-me {
             display: inline-block;
-            background-color: #2ecc71;
-            color: #fff;
-            padding: 10px 20px;
+            background-color: #00879E;
+            color: #FFF2DB;
+            padding: 8px 15px;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             transition: background-color 0.3s ease;
         }
 
         .leader-card .chat-me:hover {
-            background-color: #27ae60;
+            background-color: #006B7A;
         }
 
         .main-content {
-            background-color: #34495e;
+            background-color: #003092;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             padding: 30px;
             margin-bottom: 30px;
             width: 100%;
             text-align: center;
-            color: #fff;
+            color: #FFF2DB;
         }
 
         .main-content p {
@@ -383,28 +495,40 @@
             text-align: center;
             padding: 25px 0;
             font-size: 14px;
-            color: #bdc3c7;
-            border-top: 1px solid #555;
+            color: #FBFBFB;
+            opacity: 0.7;
+            border-top: 1px solid #E08E41;
             width: 100%;
-            background-color: #2c3e50;
+            background-color: #0A2463;
+        }
+
+        .footer p {
+            text-align: center;
+            padding: 5px 0;
+            font-size: 14px;
+            color: #FBFBFB;
+            opacity: 0.7;
+            width: 100%;
+            background-color: #0A2463;
+            margin-bottom: 0;
         }
 
         .footer a {
-            color: #3498db;
+            color: #3A7D44	;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer a:hover {
             text-decoration: underline;
-            color: #2980b9;
+            color: #3A7D44;
         }
 
         .whatsapp-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #2ecc71;
+            color: #00879E;
             font-weight: 500;
         }
 
@@ -421,7 +545,7 @@
             background: none;
             border: none;
             font-size: 20px;
-            color: #fff;
+            color: #FFF2DB;
             cursor: pointer;
             margin: 0 10px;
             padding: 5px 10px;
@@ -430,7 +554,76 @@
         }
 
         .slide-controls button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 171, 91, 0.1);
+        }
+
+        /* Styles untuk slideshow PIC */
+        .pic-slideshow-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .pic-slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            color: #FFF2DB;
+            background-color: #003092;
+            border-radius: 10px;
+        }
+
+        .pic-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background-color: #0A2463;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .pic-slide h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pic-slide p {
+            font-size: 15px;
+            color: #DCD7C9;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pic-slide-controls {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .pic-slide-controls button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #FFF2DB;
+            cursor: pointer;
+            margin: 0 10px;
+            padding: 5px;
+            border-radius: 5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .pic-slide-controls button:hover {
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -466,7 +659,7 @@
 <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
 </li>
 <li class="off-canvas-nav-item">
-<a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
+<a href="#jajaran-pic" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
 </li>
 <li class="off-canvas-nav-item">
 <a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
@@ -480,13 +673,30 @@
 
 <div class="container">
     <header class="header">
-        <h1 class="header-title">Layanan Permintaan Pengiriman</h1>
-        <p class="header-subtitle">Ubur-ubur ikan lele, ada yang bisa dibantu le?</p>
+        <h1 class="header-title">Delivery Request Service</h1>
+        <p class="header-motto">Delivering Responsibility, Every Request</p>
+        <div class="header-divider"></div>
+        <p class="header-greeting">Ubur-ubur ikan lele, ada yang bisa dibantu le? 🤔</p>
     </header>
 
     <div class="image-slideshow-container">
         <div class="image-slide image-fade">
-            <img src="sampul.jpeg" alt="Sampul 1">
+            <img src="sampul.jpeg" alt="Delivery Service">
+        </div>
+    </div>
+
+    <div class="announcement-area">
+        <p class="announcement-text">
+            <i class="fas fa-bullhorn"></i> PENGUMUMAN: Untuk sementara waktu rt di sewakan.
+            <a href="#announcementModal" class="show-announcement-details">Klik di sini untuk detail lebih lanjut.</a>
+        </p>
+    </div>
+
+    <div id="announcementModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>RT Disewakan</h3>
+            <p>Selama libur Hari Raya Idul Fitri pada tanggal 10-26 April 2025, rt di sewakan </p>
         </div>
     </div>
 
@@ -494,155 +704,232 @@
     </div>
 
     <div class="introduction">
-        <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
-        <p>Kami menyediakan platform terpusat untuk memudahkan Anda dalam mengajukan permintaan pengiriman dan mengakses informasi terkait. Jelajahi fitur-fitur yang tersedia untuk pengalaman yang lebih efisien.</p>
+        <h2>Welcome to Portal Delivery Request Service</h2>
+        <p>Kami menyediakan platform terpusat untuk memudahkan Anda dalam mengajukan permintaan pengiriman dan mengakses informasi terkait. Jelajahi fitur-fitur yang tersedia untukpengalaman yang lebih efisien.</p>
 
-        <div class="slideshow-container">
-            <div class="slide fade">
-                <h3><i class="fa fa-file-alt"></i> Form Permintaan Pengiriman</h3>
-                <p>Ajukan permintaan pengiriman Anda dengan mengisi formulir yang tersedia. Pastikan data yang Anda masukkan akurat dan lengkap untuk mempercepat proses.</p>
-            </div>
-
-            <div class="slide fade">
-                <h3><i class="fa fa-comments"></i> Status Permintaan Pengiriman</h3>
-                <p>Pantau perkembangan permintaan pengiriman yang telah Anda ajukan. Informasi terbaru mengenai status dan detail pengiriman akan ditampilkan di sini.</p>
-            </div>
-
-            <div class="slide fade">
-                <h3><i class="fa fa-map-marker-alt"></i> Lacak Request Toko (RT)</h3>
-                <p>Gunakan fitur ini untuk mengetahui status Request Toko (RT) pengiriman Anda. Masukkan nomor RT untuk melihat informasi apakah RT Anda berstatus AB, TD, atau Sewa. Jika RT tidak ditemukan, silakan gunakan Form Permintaan.</p>
-            </div>
-
-            <div class="slide fade">
-                <h3><i class="fa fa-truck-moving"></i> Lacak Pengiriman</h3>
-                <p>Untuk melihat DO anda dibawa oleh armada berapa dan dapat melihat lalu chat langsung kepada drivernya.</p>
-            </div>
-
-            <div class="slide fade">
-                <h3><i class="fa fa-clipboard-check"></i> Konfirmasi Delivery Order (DO) Project</h3>
-                <p>Mohon berikan konfirmasi terkait penerimaan Delivery Order (DO) project. Informasi Anda membantu kami dalam memastikan kelancaran logistik.</p>
-            </div>
-
-            <div class="slide fade">
-                <h3><i class="fa fa-user-tie"></i> Jajaran (PIC)</h3>
-                <p>Anda dapat melihat daftar PIC yang bertanggung jawab atas berbagai layanan pengiriman. </p>
-            </div>
-            <div class="slide fade">
-                <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
-                <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
-            </div>
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <h3><i class="fa fa-file-alt"></i> Form Permintaan Pengiriman</h3>
+            <p>Ajukan permintaan pengiriman Anda dengan mengisi formulir yang tersedia. Pastikan data yang Anda masukkan akurat dan lengkap untuk mempercepat proses.</p>
         </div>
 
-        <div class="dot-container">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-            <span class="dot" onclick="currentSlide(4)"></span>
-            <span class="dot" onclick="currentSlide(5)"></span>
-            <span class="dot" onclick="currentSlide(6)"></span>
-            <span class="dot" onclick="currentSlide(7)"></span>
+        <div class="slide fade">
+            <h3><i class="fa fa-comments"></i> Status Permintaan Pengiriman</h3>
+            <p>Pantau perkembangan permintaan pengiriman yang telah Anda ajukan. Informasi terbaru mengenai status dan detail pengiriman akan ditampilkan di sini.</p>
         </div>
 
-        <div class="slide-controls">
-            <button class="prev" onclick="plusSlides(-1)"><i class="fa fa-chevron-left"></i></button>
-            <button class="next" onclick="plusSlides(1)"><i class="fa fa-chevron-right"></i></button>
+        <div class="slide fade">
+            <h3><i class="fa fa-map-marker-alt"></i> Lacak Request Toko (RT)</h3>
+            <p>Gunakan fitur ini untuk mengetahui status Request Toko (RT) pengiriman Anda. Masukkan nomor RT untuk melihat informasi apakah RT Anda berstatus AB, TD, atau Sewa. Jika RT tidak ditemukan, silakan gunakan Form Permintaan.</p>
+        </div>
+
+        <div class="slide fade">
+            <h3><i class="fa fa-truck-moving"></i> Lacak Pengiriman</h3>
+            <p>Untuk melihat DO anda dibawa oleh armada berapa dan dapat melihat lalu chat langsung kepada drivernya.</p>
+        </div>
+
+        <div class="slide fade">
+            <h3><i class="fa fa-clipboard-check"></i> Konfirmasi Delivery Order (DO) Project</h3>
+            <p>Mohon berikan konfirmasi terkait penerimaan Delivery Order (DO) project. Informasi Anda membantu kami dalam memastikan kelancaran logistik.</p>
+        </div>
+
+        <div class="slide fade">
+            <h3><i class="fa fa-user-tie"></i> Jajaran (PIC)</h3>
+            <p>Anda dapat melihat daftar PIC yang bertanggung jawab atas berbagai layanan pengiriman. </p>
+        </div>
+        <div class="slide fade">
+            <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
+            <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
         </div>
     </div>
 
-    <h2 class="section-title">Jajaran Pimpinan Transport Planning</h2>
-    <div class="leaders-container">
-        <div class="leader-card">
-            <img src="galih.png" alt="Galih">
-            <h3>Pak Galih</h3>
-            <p>Asisten Manager</p>
-            <a href="[https://wa.me/6281286187005](https://wa.me/6281286187005)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-        </div>
-        <div class="leader-card">
-            <img src="satiman.jpeg" alt="Satiman">
-            <h3>Pak Satiman</h3>
-            <p>SPV HCI</p>
-            <a href="[https://wa.me/628567301828](https://wa.me/628567301828)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-        </div>
-        <div class="leader-card">
-            <img src="miftah.jpeg" alt="Miftah">
-            <h3>Pak Miftah</h3>
-            <p>SPV AZKO</p>
-            <a href="[https://wa.me/6281285526402](https://wa.me/6281285526402)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-        </div>
-        <div class="leader-card">
-            <img src="deni.jpeg" alt="Denni">
-            <h3>Pak Denni</h3>
-            <p>SPV KLS</p>
-            <a href="[https://wa.me/6281383256718](https://wa.me/6281383256718)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-        </div>
+    <div class="dot-container">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
     </div>
 
-    <main class="main-content">
-        <p style="display: none;">Silahkan gunakan menu di atas untuk mengakses layanan yang Anda butuhkan.</p>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2025 Hak Cipta Dilindungi. Dikelola oleh Faisal.</p>
-        <p>inspiration from Pak Miftah.</p>
-        <p>
-            <a href="[https://wa.me/6287874805035](https://wa.me/6287874805035)" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-                <i class="fab fa-whatsapp whatsapp-icon"></i> Hubungi Kami via WhatsApp
-            </a>
-        </p>
-        <p>Terima kasih telah menggunakan layanan kami.</p>
-    </footer>
+    <div class="slide-controls">
+        <button class="prev" onclick="plusSlides(-1)"><i class="fa fa-chevron-left"></i></button>
+        <button class="next" onclick="plusSlides(1)"><i class="fa fa-chevron-right"></i></button>
+    </div>
 </div>
 
+<h2 class="section-title">Jajaran Pimpinan Transport Planning</h2>
+<div class="leaders-container">
+    <div class="leader-card">
+        <img src="galih.png" alt="Galih">
+        <h3>Pak Galih</h3>
+        <p>Asisten Manager</p>
+        <a href="[https://wa.me/6281286187005](https://wa.me/6281286187005)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+    </div>
+    <div class="leader-card">
+        <img src="satiman.jpeg" alt="Satiman">
+        <h3>Pak Satiman</h3>
+        <p>SPV HCI</p>
+        <a href="[https://wa.me/628567301828](https://wa.me/628567301828)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+    </div>
+    <div class="leader-card">
+        <img src="miftah.jpeg" alt="Miftah">
+        <h3>Pak Miftah</h3>
+        <p>SPV AZKO</p>
+        <a href="[https://wa.me/6281285526402](https://wa.me/6281285526402)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+    </div>
+    <div class="leader-card">
+        <img src="deni.jpeg" alt="Denni">
+        <h3>Pak Denni</h3>
+        <p>SPV KLS</p>
+        <a href="[https://wa.me/6281383256718](https://wa.me/6281383256718)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+    </div>
+</div>
+
+<h2 class="section-title" id="jajaran-pic">Jajaran PIC</h2>
+<div class="pic-slideshow-container">
+    <div class="pic-slide">
+        <img src="ilyas.png" alt="Pak Ilyas">
+        <h3>Pak Ilyas</h3>
+        <p>PIC</p>
+    </div>
+    <div class="pic-slide">
+        <img src="irfan.jpeg" alt="Pak Irfan">
+        <h3>Pak Irfan</h3>
+        <p>PIC</p>
+    </div>
+    <div class="pic-slide">
+        <img src="budi.jpeg" alt="Pak Budi">
+        <h3>Pak Budi</h3>
+        <p>PIC</p>
+    </div>
+    <div class="pic-slide">
+        <img src="yuni.png" alt="Bu Yuni">
+        <h3>Bu Yuni</h3>
+        <p>PIC</p>
+    </div>
+    <div class="pic-slide">
+        <img src="faisal.jpeg" alt="Pak Faisal">
+        <h3>Pak Faisal</h3>
+        <p>PIC</p>
+    </div>
+    <div class="pic-slide-controls">
+        <button class="prev-pic" onclick="plusPicSlides(-1)"><i class="fa fa-chevron-left"></i></button>
+        <button class="next-pic" onclick="plusPicSlides(1)"><i class="fa fa-chevron-right"></i></button>
+    </div>
+</div>
+
+<main class="main-content">
+    <p style="display: none;">Silahkan gunakan menu di atas untuk mengakses layanan yang Anda butuhkan.</p>
+</main>
+</div>
+
+<footer class="footer">
+<p>&copy; 2025 Hak Cipta Dilindungi. Dikelola oleh Faisal.</p>
+<p>inspiration from Pak Miftah.</p>
+<p>
+<a href="https://wa.me/6287874805035" target="_blank" rel="noopener noreferrer"
+class="whatsapp-link">
+<i class="fab fa-whatsapp whatsapp-icon"></i> Hubungi Kami via WhatsApp
+</a>
+</p>
+<p>Terima kasih telah menggunakan layanan kami.</p>
+</footer>
+
 <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+const menuToggle = document.querySelector('.menu-toggle');
+const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
 
-    menuToggle.addEventListener('click', () => {
-        offCanvasMenuWrapper.classList.toggle('open');
-    });
+menuToggle.addEventListener('click', () => {
+    offCanvasMenuWrapper.classList.toggle('open');
+});
 
-    let slideIndex = 1;
-    showSlides(slideIndex);
+let slideIndex = 1;
+showSlides(slideIndex);
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
     }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+}
 
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("slide");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
+let imageSlideIndex = 0;
+showImageSlides(5000);
+
+function showImageSlides(interval) {
+    let i;
+    let slides = document.getElementsByClassName("image-slide");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
+    imageSlideIndex++;
+    if (imageSlideIndex > slides.length) {imageSlideIndex = 1}
+    slides[imageSlideIndex-1].style.display = "block";
+    setTimeout(function(){ showImageSlides(interval); }, interval);
+}
+showImageSlides(5000);
 
-    let imageSlideIndex = 0;
-    showImageSlides(5000);
+// Slideshow untuk PIC
+let picSlideIndex = 0;
+showPicSlides(picSlideIndex);
 
-    function showImageSlides(interval) {
-        let i;
-        let slides = document.getElementsByClassName("image-slide");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        imageSlideIndex++;
-        if (imageSlideIndex > slides.length) {imageSlideIndex = 1}
-        slides[imageSlideIndex-1].style.display = "block";
-        setTimeout(function(){ showImageSlides(interval); }, interval);
+function plusPicSlides(n) {
+    showPicSlides(picSlideIndex += n);
+}
+
+function showPicSlides(n) {
+    let i;
+    let picSlides = document.getElementsByClassName("pic-slide");
+    if (n >= picSlides.length) {picSlideIndex = 0}
+    if (n < 0) {picSlideIndex = picSlides.length - 1}
+    for (i = 0; i < picSlides.length; i++) {
+        picSlides[i].style.display = "none";
     }
-    showImageSlides(5000);
+    picSlides[picSlideIndex].style.display = "block";
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const showDetailsLink = document.querySelector('.show-announcement-details');
+    const modal = document.getElementById('announcementModal');
+    const closeButton = document.querySelector('.modal .close-button');
+
+    if (showDetailsLink && modal && closeButton) {
+        showDetailsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show'); // Tambahkan kelas 'show' untuk memicu tampilan
+        });
+
+        closeButton.addEventListener('click', function() {
+            modal.classList.remove('show'); // Hapus kelas 'show' untuk menyembunyikan modal
+        });
+
+        // Tutup modal jika area di luar konten modal diklik
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('show'); // Hapus kelas 'show' untuk menyembunyikan modal
+            }
+        });
+    }
+});
 </script>
 </body>
 </html>
