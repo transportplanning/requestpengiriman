@@ -25,12 +25,12 @@
             background-color: #2c3e50; /* Biru gelap sebagai latar belakang */
             color: #ecf0f1; /* Teks utama warna lebih terang */
             min-height: 100vh;
-            display: flex;
+            /* display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; */ /* Hapus flexbox pada body agar bisa scroll */
             padding-top: 60px;
             padding-bottom: 60px;
-            overflow: hidden; /* Mencegah scroll horizontal dan vertikal saat menu terbuka */
+            /* overflow: hidden; */ /* Hapus overflow: hidden agar bisa scroll */
         }
 
         .container {
@@ -38,6 +38,7 @@
             max-width: 1200px;
             position: relative; /* Untuk z-index konten di atas sidebar */
             z-index: 1;
+            margin: 0 auto; /* Tambahkan margin auto agar container berada di tengah */
         }
 
         .header {
@@ -454,194 +455,194 @@
             <li class="off-canvas-nav-item">
                 <a href="feedback.html" class="off-canvas-nav-link"><i class="fa fa-comments"></i> Status Permintaan</a>
             </li>
-            <li class="off-canvas-nav-item">
-                <a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a></li>
-            <li class="off-canvas-nav-item">
-                <a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
-                    <i class="fa fa-truck-moving"></i> Lacak Pengiriman
-                </a>
-            </li>
-            <li class="off-canvas-nav-item">
-                <a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
-            </li>
-            <li class="off-canvas-nav-item">
-                <a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
-            </li>
-            <li class="off-canvas-nav-item">
-                <a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
-            </li>
-        </ul>
+<li class="off-canvas-nav-item">
+<a href="trackingrt.html" class="off-canvas-nav-link"><i class="fa fa-map-marker-alt"></i> Lacak RT</a></li>
+<li class="off-canvas-nav-item">
+<a href="https://script.google.com/macros/s/AKfycbzh2fLq_6y2KvKKyM59HF0VUz05kz0J3nAMLNVBdBKoJ35ZBoF70-o_VQvFjV7COvlM2Q/exec" class="off-canvas-nav-link">
+<i class="fa fa-truck-moving"></i> Lacak Pengiriman
+</a>
+</li>
+<li class="off-canvas-nav-item">
+<a href="https://script.google.com/macros/s/AKfycbxlKKcXGWC6eSCpczjZ5Z50zZ0Y3dgXinJZcZ3wPekWhbHYT9Flva3jSmr4jhJcYfD9/exec" class="off-canvas-nav-link"><i class="fa fa-clipboard-check"></i> Konfirmasi DO Project</a>
+</li>
+<li class="off-canvas-nav-item">
+<a href="pic.html" class="off-canvas-nav-link"><i class="fa fa-user-tie"></i> Jajaran PIC</a>
+</li>
+<li class="off-canvas-nav-item">
+<a href="index.html" class="off-canvas-nav-link"><i class="fa fa-sign-out-alt"></i> Log Out</a>
+</li>
+</ul>
+</div>
+
+<button class="menu-toggle">
+    <i class="fa fa-chevron-right"></i>
+</button>
+
+<div class="container">
+    <header class="header">
+        <h1 class="header-title">Layanan Permintaan Pengiriman</h1>
+        <p class="header-subtitle">Ubur-ubur ikan lele, ada yang bisa dibantu le?</p>
+    </header>
+
+    <div class="image-slideshow-container">
+        <div class="image-slide image-fade">
+            <img src="sampul.jpeg" alt="Sampul 1">
+        </div>
     </div>
 
-    <button class="menu-toggle">
-        <i class="fa fa-chevron-right"></i>
-    </button>
-
-    <div class="container">
-        <header class="header">
-            <h1 class="header-title">Layanan Permintaan Pengiriman</h1>
-            <p class="header-subtitle">Ubur-ubur ikan lele, ada yang bisa dibantu le?</p>
-        </header>
-
-        <div class="image-slideshow-container">
-            <div class="image-slide image-fade">
-                <img src="sampul.jpeg" alt="Sampul 1">
-            </div>
-        </div>
-
-        <div class="logout-container">
-            </div>
-
-        <div class="introduction">
-            <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
-            <p>Kami menyediakan platform terpusat untuk memudahkan Anda dalam mengajukan permintaan pengiriman dan mengakses informasi terkait. Jelajahi fitur-fitur yang tersedia untuk pengalaman yang lebih efisien.</p>
-
-            <div class="slideshow-container">
-                <div class="slide fade">
-                    <h3><i class="fa fa-file-alt"></i> Form Permintaan Pengiriman</h3>
-                    <p>Ajukan permintaan pengiriman Anda dengan mengisi formulir yang tersedia. Pastikan data yang Anda masukkan akurat dan lengkap untuk mempercepat proses.</p>
-                </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-comments"></i> Status Permintaan Pengiriman</h3>
-                    <p>Pantau perkembangan permintaan pengiriman yang telah Anda ajukan. Informasi terbaru mengenai status dan detail pengiriman akan ditampilkan di sini.</p>
-                </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-map-marker-alt"></i> Lacak Request Toko (RT)</h3>
-                    <p>Gunakan fitur ini untuk mengetahui status Request Toko (RT) pengiriman Anda. Masukkan nomor RT untuk melihat informasi apakah RT Anda berstatus AB, TD, atau Sewa. Jika RT tidak ditemukan, silakan gunakan Form Permintaan.</p>
-                </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-truck-moving"></i> Lacak Pengiriman</h3>
-                    <p>Untuk melihat DO anda dibawa oleh armada berapa dan dapat melihat lalu chat langsung kepada drivernya.</p>
-                </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-clipboard-check"></i> Konfirmasi Delivery Order (DO) Project</h3>
-                    <p>Mohon berikan konfirmasi terkait penerimaan Delivery Order (DO) project. Informasi Anda membantu kami dalam memastikan kelancaran logistik.</p>
-                </div>
-
-                <div class="slide fade">
-                    <h3><i class="fa fa-user-tie"></i> Jajaran (PIC)</h3>
-                    <p>Anda dapat melihat daftar PIC yang bertanggung jawab atas berbagai layanan pengiriman. </p>
-                </div>
-                <div class="slide fade">
-                    <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
-                    <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
-                </div>
-            </div>
-
-            <div class="dot-container">
-                <span class="dot active" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span>
-                <span class="dot" onclick="currentSlide(5)"></span>
-                <span class="dot" onclick="currentSlide(6)"></span>
-                <span class="dot" onclick="currentSlide(7)"></span>
-            </div>
-
-            <div class="slide-controls">
-                <button class="prev" onclick="plusSlides(-1)"><i class="fa fa-chevron-left"></i></button>
-                <button class="next" onclick="plusSlides(1)"><i class="fa fa-chevron-right"></i></button>
-            </div>
-        </div>
-
-        <h2 class="section-title">Jajaran Pimpinan Transport Planning</h2>
-        <div class="leaders-container">
-            <div class="leader-card">
-                <img src="galih.png" alt="Galih">
-                <h3>Pak Galih</h3>
-                <p>Asisten Manager</p>
-                <a href="https://wa.me/6281286187005" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-            </div>
-            <div class="leader-card">
-                <img src="satiman.jpeg" alt="Satiman">
-                <h3>Pak Satiman</h3>
-                <p>SPV HCI</p>
-                <a href="https://wa.me/628567301828" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-            </div>
-            <div class="leader-card">
-                <img src="miftah.jpeg" alt="Miftah">
-                <h3>Pak Miftah</h3>
-                <p>SPV AZKO</p>
-                <a href="https://wa.me/6281285526402" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-            </div>
-            <div class="leader-card">
-                <img src="deni.jpeg" alt="Denni">
-                <h3>Pak Denni</h3>
-                <p>SPV KLS</p>
-                <a href="https://wa.me/6281383256718" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
-            </div>
-        </div>
-
-        <main class="main-content">
-            <p style="display: none;">Silahkan gunakan menu di atas untuk mengakses layanan yang Anda butuhkan.</p>
-        </main>
-
-        <footer class="footer">
-            <p>&copy; 2025 Hak Cipta Dilindungi. Dikelola oleh Faisal.</p>
-            <p>inspiration from Pak Miftah.</p>
-            <p>
-                <a href="https://wa.me/6287874805035" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
-                    <i class="fab fa-whatsapp whatsapp-icon"></i> Hubungi Kami via WhatsApp
-                </a>
-            </p>
-            <p>Terima kasih telah menggunakan layanan kami.</p>
-        </footer>
+    <div class="logout-container">
     </div>
 
-    <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+    <div class="introduction">
+        <h2>Selamat Datang di Portal Layanan Permintaan Pengiriman</h2>
+        <p>Kami menyediakan platform terpusat untuk memudahkan Anda dalam mengajukan permintaan pengiriman dan mengakses informasi terkait. Jelajahi fitur-fitur yang tersedia untuk pengalaman yang lebih efisien.</p>
 
-        menuToggle.addEventListener('click', () => {
-            offCanvasMenuWrapper.classList.toggle('open');
-        });
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <h3><i class="fa fa-file-alt"></i> Form Permintaan Pengiriman</h3>
+                <p>Ajukan permintaan pengiriman Anda dengan mengisi formulir yang tersedia. Pastikan data yang Anda masukkan akurat dan lengkap untuk mempercepat proses.</p>
+            </div>
 
-        let slideIndex = 1;
-        showSlides(slideIndex);
+            <div class="slide fade">
+                <h3><i class="fa fa-comments"></i> Status Permintaan Pengiriman</h3>
+                <p>Pantau perkembangan permintaan pengiriman yang telah Anda ajukan. Informasi terbaru mengenai status dan detail pengiriman akan ditampilkan di sini.</p>
+            </div>
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
+            <div class="slide fade">
+                <h3><i class="fa fa-map-marker-alt"></i> Lacak Request Toko (RT)</h3>
+                <p>Gunakan fitur ini untuk mengetahui status Request Toko (RT) pengiriman Anda. Masukkan nomor RT untuk melihat informasi apakah RT Anda berstatus AB, TD, atau Sewa. Jika RT tidak ditemukan, silakan gunakan Form Permintaan.</p>
+            </div>
+
+            <div class="slide fade">
+                <h3><i class="fa fa-truck-moving"></i> Lacak Pengiriman</h3>
+                <p>Untuk melihat DO anda dibawa oleh armada berapa dan dapat melihat lalu chat langsung kepada drivernya.</p>
+            </div>
+
+            <div class="slide fade">
+                <h3><i class="fa fa-clipboard-check"></i> Konfirmasi Delivery Order (DO) Project</h3>
+                <p>Mohon berikan konfirmasi terkait penerimaan Delivery Order (DO) project. Informasi Anda membantu kami dalam memastikan kelancaran logistik.</p>
+            </div>
+
+            <div class="slide fade">
+                <h3><i class="fa fa-user-tie"></i> Jajaran (PIC)</h3>
+                <p>Anda dapat melihat daftar PIC yang bertanggung jawab atas berbagai layanan pengiriman. </p>
+            </div>
+            <div class="slide fade">
+                <h3><i class="fa fa-question-circle"></i> Live Chat (Tawk.to)</h3>
+                <p>Fitur dengan live chat responsif yang anda bisa gunakan bila ada kendala mengenai penjaluran anda yang diluar dari didaftar menu.</p>
+            </div>
+        </div>
+
+        <div class="dot-container">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+        </div>
+
+        <div class="slide-controls">
+            <button class="prev" onclick="plusSlides(-1)"><i class="fa fa-chevron-left"></i></button>
+            <button class="next" onclick="plusSlides(1)"><i class="fa fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <h2 class="section-title">Jajaran Pimpinan Transport Planning</h2>
+    <div class="leaders-container">
+        <div class="leader-card">
+            <img src="galih.png" alt="Galih">
+            <h3>Pak Galih</h3>
+            <p>Asisten Manager</p>
+            <a href="[https://wa.me/6281286187005](https://wa.me/6281286187005)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+        </div>
+        <div class="leader-card">
+            <img src="satiman.jpeg" alt="Satiman">
+            <h3>Pak Satiman</h3>
+            <p>SPV HCI</p>
+            <a href="[https://wa.me/628567301828](https://wa.me/628567301828)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+        </div>
+        <div class="leader-card">
+            <img src="miftah.jpeg" alt="Miftah">
+            <h3>Pak Miftah</h3>
+            <p>SPV AZKO</p>
+            <a href="[https://wa.me/6281285526402](https://wa.me/6281285526402)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+        </div>
+        <div class="leader-card">
+            <img src="deni.jpeg" alt="Denni">
+            <h3>Pak Denni</h3>
+            <p>SPV KLS</p>
+            <a href="[https://wa.me/6281383256718](https://wa.me/6281383256718)" target="_blank" rel="noopener noreferrer" class="chat-me">Chat Me</a>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <p style="display: none;">Silahkan gunakan menu di atas untuk mengakses layanan yang Anda butuhkan.</p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Hak Cipta Dilindungi. Dikelola oleh Faisal.</p>
+        <p>inspiration from Pak Miftah.</p>
+        <p>
+            <a href="[https://wa.me/6287874805035](https://wa.me/6287874805035)" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+                <i class="fab fa-whatsapp whatsapp-icon"></i> Hubungi Kami via WhatsApp
+            </a>
+        </p>
+        <p>Terima kasih telah menggunakan layanan kami.</p>
+    </footer>
+</div>
+
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const offCanvasMenuWrapper = document.querySelector('.off-canvas-menu-wrapper');
+
+    menuToggle.addEventListener('click', () => {
+        offCanvasMenuWrapper.classList.toggle('open');
+    });
+
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
         }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
         }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
 
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slide");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
+    let imageSlideIndex = 0;
+    showImageSlides(5000);
+
+    function showImageSlides(interval) {
+        let i;
+        let slides = document.getElementsByClassName("image-slide");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
         }
-
-        let imageSlideIndex = 0;
-        showImageSlides(5000);
-
-        function showImageSlides(interval) {
-            let i;
-            let slides = document.getElementsByClassName("image-slide");
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            imageSlideIndex++;
-            if (imageSlideIndex > slides.length) {imageSlideIndex = 1}
-            slides[imageSlideIndex-1].style.display = "block";
-            setTimeout(function(){ showImageSlides(interval); }, interval);
-        }
-        showImageSlides(5000);
-    </script>
+        imageSlideIndex++;
+        if (imageSlideIndex > slides.length) {imageSlideIndex = 1}
+        slides[imageSlideIndex-1].style.display = "block";
+        setTimeout(function(){ showImageSlides(interval); }, interval);
+    }
+    showImageSlides(5000);
+</script>
 </body>
 </html>
